@@ -8,13 +8,15 @@ public class Player : MonoBehaviour
     const float moveSpeed = 5.5f;
     const float jumpForce = 11.5f;
 
-    CapsuleCollider2D playerCollider;
+    Animator animator;
+    BoxCollider2D playerCollider;
     Rigidbody2D rigidBody;
     Vector2 rawInput;
 
     void Awake()
     {
-        playerCollider = GetComponent<CapsuleCollider2D>();
+        animator = GetComponent<Animator>();
+        playerCollider = GetComponent<BoxCollider2D>();
         rigidBody = GetComponent<Rigidbody2D>();
     }
 
@@ -37,9 +39,20 @@ public class Player : MonoBehaviour
         }
     }
 
+    void FlipSprite(bool isMoving)
+    {
+        if (isMoving)
+            transform.localScale = new Vector2(Mathf.Sign(rawInput.x), 1);
+    }
+
     void Move()
     {
-        Vector3 delta = rawInput * moveSpeed * Time.deltaTime;
-        transform.position += delta;
+        var speed = rawInput.x * moveSpeed;
+
+        Vector2 playerVelocity = new Vector2(speed, rigidBody.velocity.y);
+        rigidBody.velocity = playerVelocity;
+
+        animator.SetBool("Moving", Mathf.Abs(rigidBody.velocity.x) > Mathf.Epsilon);
+        FlipSprite(Mathf.Abs(speed) > 0);
     }
 }
