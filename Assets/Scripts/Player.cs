@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] GameObject fireball;
+
     const float moveSpeed = 5.5f;
     const float jumpForce = 11.5f;
 
@@ -13,11 +15,17 @@ public class Player : MonoBehaviour
     Rigidbody2D rigidBody;
     Vector2 rawInput;
 
+    Transform fireballSpawnPos;
+    public bool IsFacingRight { get; private set; }
+
     void Awake()
     {
         animator = GetComponent<Animator>();
         playerCollider = GetComponent<BoxCollider2D>();
         rigidBody = GetComponent<Rigidbody2D>();
+
+        fireballSpawnPos = GameObject.Find("ProjectileSpawn").transform;
+        IsFacingRight = true;
     }
 
     void Update()
@@ -41,13 +49,17 @@ public class Player : MonoBehaviour
 
     void OnFire()
     {
-        return;
+        Instantiate(fireball, fireballSpawnPos.position, transform.rotation);
     }
 
     void FlipSprite(bool isMoving)
     {
         if (isMoving)
-            transform.localScale = new Vector2(Mathf.Sign(rawInput.x), 1);
+        {
+            var inputValue = Mathf.Sign(rawInput.x);
+            IsFacingRight = inputValue >= 1;
+            transform.localScale = new Vector2(inputValue, 1);
+        }
     }
 
     void Move()
@@ -58,6 +70,6 @@ public class Player : MonoBehaviour
         rigidBody.velocity = playerVelocity;
 
         animator.SetBool("Moving", Mathf.Abs(rigidBody.velocity.x) > Mathf.Epsilon);
-        FlipSprite(Mathf.Abs(speed) > 0);
+        FlipSprite(Mathf.Abs(speed) > Mathf.Epsilon);
     }
 }
