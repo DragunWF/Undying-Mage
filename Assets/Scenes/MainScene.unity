@@ -3219,6 +3219,11 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &2052877928 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 211249489897159581, guid: 146fecd4569814448b1203ff3917c313, type: 3}
+  m_PrefabInstance: {fileID: 211249490427719123}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &211249490427719123
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3297,7 +3302,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7389877723508401729, guid: 8136e9af2b186494893201a5cc937ccc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -1.09
       objectReference: {fileID: 0}
     - target: {fileID: 7389877723508401729, guid: 8136e9af2b186494893201a5cc937ccc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3331,5 +3336,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8352902527660585138, guid: 8136e9af2b186494893201a5cc937ccc, type: 3}
+      propertyPath: fireball
+      value: 
+      objectReference: {fileID: 2052877928}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8136e9af2b186494893201a5cc937ccc, type: 3}
