@@ -10,6 +10,9 @@ public class Player : MonoBehaviour
     const float moveSpeed = 5.5f;
     const float jumpForce = 11.5f;
 
+    bool canCast = true;
+    float castCooldown = 1.25f;
+
     Animator animator;
     BoxCollider2D playerCollider;
     Rigidbody2D rigidBody;
@@ -49,8 +52,13 @@ public class Player : MonoBehaviour
 
     void OnFire()
     {
-        Instantiate(fireball, fireballSpawnPos.position, transform.rotation);
-        // Add fireball sound effect in the future
+        if (canCast)
+        {
+            Instantiate(fireball, fireballSpawnPos.position, transform.rotation);
+            canCast = false;
+            StartCoroutine(CastingCooldown());
+            // Add fireball sound effect in the future
+        }
     }
 
     void FlipSprite(bool isMoving)
@@ -72,5 +80,11 @@ public class Player : MonoBehaviour
 
         animator.SetBool("Moving", Mathf.Abs(rigidBody.velocity.x) > Mathf.Epsilon);
         FlipSprite(Mathf.Abs(speed) > Mathf.Epsilon);
+    }
+
+    IEnumerator CastingCooldown()
+    {
+        yield return new WaitForSecondsRealtime(castCooldown);
+        canCast = true;
     }
 }
