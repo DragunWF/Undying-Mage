@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Fireball : MonoBehaviour
 {
-    const float baseSpeed = 7.5f;
+    const float baseSpeed = 9.5f;
     float moveSpeed;
 
     Player player;

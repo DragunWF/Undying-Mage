@@ -50,6 +50,7 @@ public class Player : MonoBehaviour
     void OnFire()
     {
         Instantiate(fireball, fireballSpawnPos.position, transform.rotation);
+        // Add fireball sound effect in the future
     }
 
     void FlipSprite(bool isMoving)
