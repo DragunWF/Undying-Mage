@@ -7,8 +7,18 @@ public class Enemy : MonoBehaviour
     [SerializeField] int health = 50;
     Rigidbody2D rigidBody;
 
+    int playerDamage;
+
+    public void DamageHealth()
+    {
+        health -= playerDamage;
+        if (health <= 0)
+            Destroy(gameObject);
+    }
+
     void Start()
     {
+        playerDamage = FindObjectOfType<Player>().FireballDamage;
         rigidBody = GetComponent<Rigidbody2D>();
     }
 
