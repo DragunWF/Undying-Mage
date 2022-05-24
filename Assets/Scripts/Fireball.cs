@@ -35,10 +35,15 @@ public class Fireball : MonoBehaviour
         rigidBody.velocity = new Vector2(moveSpeed, 0);
     }
 
-    void OnCollisionEnter2D(Collision2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Ground")
+        var tag = other.tag;
+        if (tag == "Enemy" || tag == "Ground")
+        {
+            if (tag == "Enemy")
+                other.GetComponentInParent<Enemy>().DamageHealth();
             Destroy(gameObject);
+        }
     }
 
     IEnumerator ExtinguishFlames()
