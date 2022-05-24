@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] GameObject fireball;
+    GameObject fireball;
 
     const float moveSpeed = 5.5f;
     const float jumpForce = 11.5f;
@@ -27,6 +27,7 @@ public class Player : MonoBehaviour
         playerCollider = GetComponent<BoxCollider2D>();
         rigidBody = GetComponent<Rigidbody2D>();
 
+        fireball = Resources.Load("Prefabs/Fireball") as GameObject;
         fireballSpawnPos = GameObject.Find("ProjectileSpawn").transform;
         IsFacingRight = true;
     }
