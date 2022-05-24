@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     const float jumpForce = 11.5f;
 
     bool canCast = true;
-    float castCooldown = 1.25f;
+    float castCooldown = 0.75f;
 
     Animator animator;
     BoxCollider2D playerCollider;
@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
 
     Transform fireballSpawnPos;
     public bool IsFacingRight { get; private set; }
+    public int FireballDamage { get; private set; }
 
     void Awake()
     {
@@ -29,6 +30,8 @@ public class Player : MonoBehaviour
 
         fireball = Resources.Load("Prefabs/Fireball") as GameObject;
         fireballSpawnPos = GameObject.Find("ProjectileSpawn").transform;
+
+        FireballDamage = 25;
         IsFacingRight = true;
     }
 
