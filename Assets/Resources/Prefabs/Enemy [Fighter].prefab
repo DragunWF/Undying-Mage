@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1619698372329689774}
   m_Layer: 7
   m_Name: Damage Box
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -67,14 +67,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1619698372795556154}
-  - component: {fileID: 1619698372795556157}
+  - component: {fileID: 8418737914630896319}
   - component: {fileID: 1619698372795556153}
   - component: {fileID: 1619698372795556152}
   - component: {fileID: 1619698372795556158}
   - component: {fileID: 1619698372795556159}
   m_Layer: 10
   m_Name: Enemy [Fighter]
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -95,7 +95,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1619698372795556157
+--- !u!114 &8418737914630896319
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

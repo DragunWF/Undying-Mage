@@ -9,14 +9,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8206300468193418830}
-  - component: {fileID: 8206300468193418825}
+  - component: {fileID: 2379196949739904744}
   - component: {fileID: 8206300468193418829}
   - component: {fileID: 8206300468193418828}
   - component: {fileID: 8206300468193418826}
   - component: {fileID: 8206300468193418827}
   m_Layer: 10
   m_Name: Enemy [Spider]
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37,7 +37,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8206300468193418825
+--- !u!114 &2379196949739904744
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -181,7 +181,7 @@ GameObject:
   - component: {fileID: 8206300468666101210}
   m_Layer: 7
   m_Name: Damage Box
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
