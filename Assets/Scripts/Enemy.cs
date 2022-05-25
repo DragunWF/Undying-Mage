@@ -5,6 +5,8 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] int health = 50;
+    [SerializeField] int damage = 15;
+
     Rigidbody2D rigidBody;
 
     const float moveSpeed = 1.1f;
