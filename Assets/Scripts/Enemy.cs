@@ -17,13 +17,12 @@ public class Enemy : MonoBehaviour
     Player player;
     int playerDamage;
 
-
     public void DamageHealth()
     {
         health -= playerDamage;
         if (health <= 0)
         {
-            FindObjectOfType<ScoreKeeper>().IncreaseScore(GetScore());
+            FindObjectOfType<InfoKeeper>().IncreaseScore(GetScore());
             Destroy(gameObject);
         }
     }

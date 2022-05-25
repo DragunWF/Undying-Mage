@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class ScoreKeeper : MonoBehaviour
+public class InfoKeeper : MonoBehaviour
 {
     TextMeshProUGUI scoreText;
+    TextMeshProUGUI deathText;
     int score = 0;
 
     public void IncreaseScore(int gainAmount)
@@ -16,6 +17,9 @@ public class ScoreKeeper : MonoBehaviour
 
     void Awake()
     {
-        scoreText = GameObject.Find("Score Text").GetComponent<TextMeshProUGUI>();
+        scoreText = GameObject.Find("Score Text")
+                    .GetComponent<TextMeshProUGUI>();
+        deathText = GameObject.Find("Death Text")
+                    .GetComponent<TextMeshProUGUI>();
     }
 }
