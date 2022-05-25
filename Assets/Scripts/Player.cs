@@ -22,6 +22,11 @@ public class Player : MonoBehaviour
     public bool IsFacingRight { get; private set; }
     public int FireballDamage { get; private set; }
 
+    public Vector2 GetPosition()
+    {
+        return transform.position;
+    }
+
     void Awake()
     {
         animator = GetComponent<Animator>();
