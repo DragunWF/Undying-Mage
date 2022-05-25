@@ -4,28 +4,34 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [Header("Enemy Stats")]
     [SerializeField] int health = 50;
     [SerializeField] int damage = 15;
 
-    Rigidbody2D rigidBody;
+    [Header("Score Gain")]
+    [SerializeField] int minScoreGain = 10;
+    [SerializeField] int maxScoreGain = 50;
 
     const float moveSpeed = 1.1f;
 
     Player player;
     int playerDamage;
 
+
     public void DamageHealth()
     {
         health -= playerDamage;
         if (health <= 0)
+        {
+            FindObjectOfType<ScoreKeeper>().IncreaseScore(GetScore());
             Destroy(gameObject);
+        }
     }
 
     void Awake()
     {
         player = FindObjectOfType<Player>();
         playerDamage = player.FireballDamage;
-        rigidBody = GetComponent<Rigidbody2D>();
     }
 
     void Update()
@@ -42,5 +48,10 @@ public class Enemy : MonoBehaviour
     {
         transform.localScale = playerPosX >= transform.position.x ?
                                new Vector2(1, 1) : new Vector2(-1, 1);
+    }
+
+    int GetScore()
+    {
+        return Random.Range(minScoreGain, maxScoreGain);
     }
 }
