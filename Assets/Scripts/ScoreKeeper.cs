@@ -1,18 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ScoreKeeper : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    TextMeshProUGUI scoreText;
+    int score = 0;
+
+    public void IncreaseScore(int gainAmount)
     {
-        
+        score += gainAmount;
+        scoreText.text = string.Format("Score:{0}", score);
     }
 
-    // Update is called once per frame
-    void Update()
+    void Awake()
     {
-        
+        scoreText = GameObject.Find("Score Text").GetComponent<TextMeshProUGUI>();
     }
 }
