@@ -14,9 +14,11 @@ public class EnemySpawner : MonoBehaviour
 
     void Awake()
     {
-        enemies = new GameObject[2] {
+        enemies = new GameObject[4] {
             Resources.Load("Prefabs/Enemy [Fighter]") as GameObject,
-            Resources.Load("Prefabs/Enemy [Spider]") as GameObject
+            Resources.Load("Prefabs/Enemy [Spider]") as GameObject,
+            Resources.Load("Prefabs/Enemy [Crawler]") as GameObject,
+            Resources.Load("Prefabs/Enemy [Viking]") as GameObject
         };
         rightPos = GameObject.Find("RightPosition").transform.position;
         leftPos = GameObject.Find("LeftPosition").transform.position;

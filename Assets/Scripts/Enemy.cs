@@ -7,12 +7,11 @@ public class Enemy : MonoBehaviour
     [Header("Enemy Stats")]
     [SerializeField] int health = 50;
     [SerializeField] int damage = 15;
+    [SerializeField] float speed = 1.1f;
 
     [Header("Score Gain")]
     [SerializeField] int minScoreGain = 10;
     [SerializeField] int maxScoreGain = 50;
-
-    const float moveSpeed = 1.1f;
 
     Player player;
     int playerDamage;
@@ -39,7 +38,7 @@ public class Enemy : MonoBehaviour
         transform.position = Vector2.MoveTowards(transform.position,
                                                  new Vector2(playerPosX,
                                                             transform.position.y),
-                                                 moveSpeed * Time.deltaTime);
+                                                 speed * Time.deltaTime);
         FlipSprite(playerPosX);
     }
 
