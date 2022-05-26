@@ -3,24 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Player : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
-    GameObject fireball;
-
     const float moveSpeed = 5.5f;
     const float jumpForce = 11.5f;
 
-    bool canCast = true;
-    float castCooldown = 0.75f;
-
-    Animator animator;
     BoxCollider2D playerCollider;
     Rigidbody2D rigidBody;
     Vector2 rawInput;
+    Animator animator;
 
-    Transform fireballSpawnPos;
     public bool IsFacingRight { get; private set; }
-    public int FireballDamage { get; private set; }
 
     public Vector2 GetPosition()
     {
@@ -32,11 +25,6 @@ public class Player : MonoBehaviour
         animator = GetComponent<Animator>();
         playerCollider = GetComponent<BoxCollider2D>();
         rigidBody = GetComponent<Rigidbody2D>();
-
-        fireball = Resources.Load("Prefabs/Fireball") as GameObject;
-        fireballSpawnPos = GameObject.Find("ProjectileSpawn").transform;
-
-        FireballDamage = 25;
         IsFacingRight = true;
     }
 
@@ -59,17 +47,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    void OnFire()
-    {
-        if (canCast)
-        {
-            Instantiate(fireball, fireballSpawnPos.position, transform.rotation);
-            canCast = false;
-            StartCoroutine(CastingCooldown());
-            // Add fireball sound effect in the future
-        }
-    }
-
     void FlipSprite(bool isMoving)
     {
         if (isMoving)
@@ -89,11 +66,5 @@ public class Player : MonoBehaviour
 
         animator.SetBool("Moving", Mathf.Abs(rigidBody.velocity.x) > Mathf.Epsilon);
         FlipSprite(Mathf.Abs(speed) > Mathf.Epsilon);
-    }
-
-    IEnumerator CastingCooldown()
-    {
-        yield return new WaitForSecondsRealtime(castCooldown);
-        canCast = true;
     }
 }
