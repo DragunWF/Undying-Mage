@@ -65,20 +65,19 @@ public class Enemy : MonoBehaviour
 
     void Move()
     {
+        var speed = moveSpeed * Time.deltaTime;
+        Vector2 direction;
+
         if (!isFlyingEnemy)
         {
             var playerPosX = playerMovement.GetPosition().x;
-            transform.position = Vector2.MoveTowards(transform.position,
-                                                    new Vector2(playerPosX,
-                                                                transform.position.y),
-                                                    moveSpeed * Time.deltaTime);
+            direction = new Vector2(playerPosX, transform.position.y);
             FlipSprite(playerPosX);
         }
         else
-        {
-            var speed = Time.deltaTime * moveSpeed * xAxis;
-            rigidBody.velocity = new Vector2(speed, rigidBody.velocity.y);
-        }
+            direction = new Vector2(xAxis * 1000, transform.position.y);
+
+        transform.position = Vector2.MoveTowards(transform.position, direction, speed);
     }
 
     void FlipSprite(float playerPosX)
