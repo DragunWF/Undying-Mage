@@ -7,6 +7,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3991109808023349481, guid: a1f60e7d77376034bb9fb5887a00ddc9, type: 3}
+      propertyPath: damage
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3991109808023349481, guid: a1f60e7d77376034bb9fb5887a00ddc9, type: 3}
+      propertyPath: health
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3991109808023349481, guid: a1f60e7d77376034bb9fb5887a00ddc9, type: 3}
+      propertyPath: moveSpeed
+      value: 7.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7459505729518823500, guid: a1f60e7d77376034bb9fb5887a00ddc9, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -62,6 +74,18 @@ PrefabInstance:
     - target: {fileID: 7459505729518823503, guid: a1f60e7d77376034bb9fb5887a00ddc9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9160726489758477140, guid: a1f60e7d77376034bb9fb5887a00ddc9, type: 3}
+      propertyPath: m_Radius
+      value: 0.42992473
+      objectReference: {fileID: 0}
+    - target: {fileID: 9160726489758477140, guid: a1f60e7d77376034bb9fb5887a00ddc9, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.0031621456
+      objectReference: {fileID: 0}
+    - target: {fileID: 9160726489758477140, guid: a1f60e7d77376034bb9fb5887a00ddc9, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.095847964
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a1f60e7d77376034bb9fb5887a00ddc9, type: 3}
