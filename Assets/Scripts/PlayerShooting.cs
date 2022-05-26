@@ -6,19 +6,18 @@ using UnityEngine.InputSystem;
 public class PlayerShooting : MonoBehaviour
 {
     GameObject fireball;
+    Transform fireballSpawnPos;
 
     bool canCast = true;
     float castCooldown = 0.75f;
 
-    Transform fireballSpawnPos;
-    public int FireballDamage { get; private set; }
+    PlayerState playerState;
 
     void Awake()
     {
+        playerState = GetComponent<PlayerState>();
         fireball = Resources.Load("Prefabs/Fireball") as GameObject;
         fireballSpawnPos = GameObject.Find("ProjectileSpawn").transform;
-
-        FireballDamage = 25;
     }
 
     void OnFire()
@@ -34,7 +33,7 @@ public class PlayerShooting : MonoBehaviour
 
     IEnumerator CastingCooldown()
     {
-        yield return new WaitForSecondsRealtime(castCooldown);
+        yield return new WaitForSecondsRealtime(playerState.FiringRate);
         canCast = true;
     }
 }

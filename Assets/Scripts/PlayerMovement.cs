@@ -5,8 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    const float moveSpeed = 5.5f;
-    const float jumpForce = 11.5f;
+    PlayerState playerState;
 
     BoxCollider2D playerCollider;
     Rigidbody2D rigidBody;
@@ -22,9 +21,12 @@ public class PlayerMovement : MonoBehaviour
 
     void Awake()
     {
+        playerState = GetComponent<PlayerState>();
+
         animator = GetComponent<Animator>();
         playerCollider = GetComponent<BoxCollider2D>();
         rigidBody = GetComponent<Rigidbody2D>();
+
         IsFacingRight = true;
     }
 
@@ -42,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (playerCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
-            rigidBody.velocity += new Vector2(rigidBody.velocity.x, jumpForce);
+            rigidBody.velocity += new Vector2(rigidBody.velocity.x, playerState.JumpForce);
             // Add jump sound effect in the future
         }
     }
@@ -59,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Move()
     {
-        var speed = rawInput.x * moveSpeed;
+        var speed = rawInput.x * playerState.MoveSpeed;
 
         Vector2 playerVelocity = new Vector2(speed, rigidBody.velocity.y);
         rigidBody.velocity = playerVelocity;
