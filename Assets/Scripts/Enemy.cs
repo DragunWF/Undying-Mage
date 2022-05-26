@@ -40,15 +40,21 @@ public class Enemy : MonoBehaviour
         playerMovement = FindObjectOfType<PlayerMovement>();
         playerState = FindObjectOfType<PlayerState>();
         playerDamage = playerState.FireballDamage;
+
+        if (isFlyingEnemy)
+        {
+            lifeSpan = 15;
+            rigidBody = GetComponent<Rigidbody2D>();
+        }
     }
 
     void Start()
     {
         if (isFlyingEnemy)
         {
-            rigidBody = GetComponent<Rigidbody2D>();
             PickFlyingDirection();
             FlipSprite(playerMovement.GetPosition().x);
+            Invoke("ExpireFlyingEnemy", lifeSpan);
         }
     }
 
@@ -85,6 +91,11 @@ public class Enemy : MonoBehaviour
     {
         var playerPosX = playerMovement.GetPosition().x;
         xAxis = playerPosX >= transform.position.x ? 1 : -1;
+    }
+
+    void ExpireFlyingEnemy()
+    {
+        Destroy(gameObject);
     }
 
     int GetScore()
