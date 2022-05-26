@@ -13,7 +13,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] int minScoreGain = 10;
     [SerializeField] int maxScoreGain = 50;
 
-    Player player;
+    PlayerState playerState;
+    PlayerMovement playerMovement;
     int playerDamage;
 
     public void DamageHealth()
@@ -28,13 +29,14 @@ public class Enemy : MonoBehaviour
 
     void Awake()
     {
-        player = FindObjectOfType<Player>();
-        playerDamage = player.FireballDamage;
+        playerMovement = FindObjectOfType<PlayerMovement>();
+        playerState = FindObjectOfType<PlayerState>();
+        playerDamage = playerState.FireballDamage;
     }
 
     void Update()
     {
-        var playerPosX = player.GetPosition().x;
+        var playerPosX = playerMovement.GetPosition().x;
         transform.position = Vector2.MoveTowards(transform.position,
                                                  new Vector2(playerPosX,
                                                             transform.position.y),
