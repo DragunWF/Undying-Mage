@@ -21,8 +21,7 @@ public class Enemy : MonoBehaviour
     int playerDamage;
 
     // Only for flying enemies
-    Rigidbody2D rigidBody;
-    int lifeSpan;
+    int lifeSpan = 15;
     int xAxis;
 
     public void DamageHealth()
@@ -40,12 +39,6 @@ public class Enemy : MonoBehaviour
         playerMovement = FindObjectOfType<PlayerMovement>();
         playerState = FindObjectOfType<PlayerState>();
         playerDamage = playerState.FireballDamage;
-
-        if (isFlyingEnemy)
-        {
-            lifeSpan = 15;
-            rigidBody = GetComponent<Rigidbody2D>();
-        }
     }
 
     void Start()
