@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     GameObject[] enemies;
+    GameObject[] flyingEnemies;
 
     Vector2 rightPos;
     Vector2 leftPos;
@@ -20,6 +21,11 @@ public class EnemySpawner : MonoBehaviour
             Resources.Load("Prefabs/Enemy [Crawler]") as GameObject,
             Resources.Load("Prefabs/Enemy [Viking]") as GameObject
         };
+        flyingEnemies = new GameObject[2] {
+            Resources.Load("Prefabs/Flying Enemy") as GameObject,
+            Resources.Load("Prefabs/Flying Enemy [Blue]") as GameObject
+        };
+
         rightPos = GameObject.Find("RightPosition").transform.position;
         leftPos = GameObject.Find("LeftPosition").transform.position;
     }
@@ -42,7 +48,12 @@ public class EnemySpawner : MonoBehaviour
 
     GameObject ChooseRandomEnemy()
     {
-        return enemies[Random.Range(0, enemies.Length)];
+        GameObject[] chosenGroup;
+
+        var chance = Random.Range(1, 6);
+        chosenGroup = chance != 1 ? enemies : flyingEnemies;
+
+        return enemies[Random.Range(0, chosenGroup.Length)];
     }
 
     IEnumerator SpawnEnemies()
