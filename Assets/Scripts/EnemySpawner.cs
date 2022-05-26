@@ -50,10 +50,10 @@ public class EnemySpawner : MonoBehaviour
     {
         GameObject[] chosenGroup;
 
-        var chance = Random.Range(1, 6);
-        chosenGroup = chance != 1 ? enemies : flyingEnemies;
+        var chance = Random.Range(1, 7);
+        chosenGroup = chance >= 3 ? enemies : flyingEnemies;
 
-        return enemies[Random.Range(0, chosenGroup.Length)];
+        return chosenGroup[Random.Range(0, chosenGroup.Length)];
     }
 
     IEnumerator SpawnEnemies()
