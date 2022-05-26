@@ -8,13 +8,13 @@ public class Fireball : MonoBehaviour
     const float fireballLifespan = 7.5f;
     float moveSpeed;
 
-    Player player;
+    PlayerMovement player;
     Rigidbody2D rigidBody;
 
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
-        player = FindObjectOfType<Player>();
+        player = FindObjectOfType<PlayerMovement>();
 
         if (player.IsFacingRight)
         {
