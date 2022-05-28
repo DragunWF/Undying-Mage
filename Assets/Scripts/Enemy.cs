@@ -18,7 +18,10 @@ public class Enemy : MonoBehaviour
 
     PlayerState playerState;
     PlayerMovement playerMovement;
+
     int playerDamage;
+    public float DamageCooldown { get; private set; }
+    FlashEffect flashEffect;
 
     // Only for flying enemies
     int lifeSpan = 15;
@@ -36,6 +39,9 @@ public class Enemy : MonoBehaviour
 
     void Awake()
     {
+        flashEffect = GetComponent<FlashEffect>();
+        DamageCooldown = 0.25f;
+
         playerMovement = FindObjectOfType<PlayerMovement>();
         playerState = FindObjectOfType<PlayerState>();
         playerDamage = playerState.FireballDamage;
