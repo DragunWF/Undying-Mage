@@ -1,17 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerShooting : MonoBehaviour
 {
     GameObject fireball;
     Transform fireballSpawnPos;
 
-    bool canCast = true;
-    float castCooldown = 0.75f;
-
     PlayerState playerState;
+    bool canCast = true;
 
     void Awake()
     {
@@ -24,8 +21,8 @@ public class PlayerShooting : MonoBehaviour
     {
         if (canCast)
         {
-            Instantiate(fireball, fireballSpawnPos.position, transform.rotation);
             canCast = false;
+            Instantiate(fireball, fireballSpawnPos.position, transform.rotation);
             StartCoroutine(CastingCooldown());
             // Add fireball sound effect in the future
         }

@@ -25,6 +25,11 @@ public class PlayerState : MonoBehaviour
         FiringRate = 1.2f;
     }
 
+    public void IncrementDeaths()
+    {
+        Deaths += 1;
+    }
+
     public void DamageHealth(int damageAmount)
     {
         if (!isInvincibilityOn)
