@@ -9,6 +9,12 @@ public class InfoKeeper : MonoBehaviour
     private TextMeshProUGUI deathText;
     private int score = 0;
 
+    public void IncreaseScore(int gainAmount)
+    {
+        score += gainAmount;
+        scoreText.text = string.Format("Score:{0}", score);
+    }
+
     private void Awake()
     {
         scoreText = GameObject.Find("Score Text")
@@ -17,9 +23,10 @@ public class InfoKeeper : MonoBehaviour
                     .GetComponent<TextMeshProUGUI>();
     }
 
-    public void IncreaseScore(int gainAmount)
+    private void Start()
     {
-        score += gainAmount;
-        scoreText.text = string.Format("Score:{0}", score);
+        var deathCount = FindObjectOfType<GameInfo>().Deaths;
+        deathText.text = string.Format("Deaths:{0}", deathCount);
+        IncreaseScore(score); // Purely just to set the score
     }
 }
