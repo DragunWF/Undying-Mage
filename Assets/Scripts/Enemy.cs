@@ -56,6 +56,12 @@ public class Enemy : MonoBehaviour
         Move();
     }
 
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Player")
+            playerState.DamageHealth(damage);
+    }
+
     void Move()
     {
         var speed = moveSpeed * Time.deltaTime;
