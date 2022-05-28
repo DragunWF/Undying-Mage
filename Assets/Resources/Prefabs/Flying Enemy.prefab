@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7459505729518823503}
   - component: {fileID: 3991109808023349481}
+  - component: {fileID: 8115379505693997156}
   - component: {fileID: 7459505729518823500}
   - component: {fileID: 7459505729518823501}
   m_Layer: 7
@@ -53,6 +54,19 @@ MonoBehaviour:
   minScoreGain: 5
   maxScoreGain: 25
   isFlyingEnemy: 1
+--- !u!114 &8115379505693997156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7459505729518823502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 111c487ac508f094a911d43a13407ffb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isUsingPlayer: 0
 --- !u!212 &7459505729518823500
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -68,6 +68,7 @@ GameObject:
   m_Component:
   - component: {fileID: 678852177777705671}
   - component: {fileID: 6453092826435158625}
+  - component: {fileID: 5918284815198245099}
   - component: {fileID: 678852177777705668}
   - component: {fileID: 678852177777705669}
   - component: {fileID: 678852177777705667}
@@ -109,8 +110,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 50
   damage: 15
+  moveSpeed: 1.1
   minScoreGain: 10
   maxScoreGain: 50
+  isFlyingEnemy: 0
+--- !u!114 &5918284815198245099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 678852177777705670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 111c487ac508f094a911d43a13407ffb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isUsingPlayer: 0
 --- !u!212 &678852177777705668
 SpriteRenderer:
   m_ObjectHideFlags: 0
