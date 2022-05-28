@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class AudioPlayer : MonoBehaviour
 {
-    AudioClip playerDamaged;
-    const float playerDamagedVolume = 0.3f;
+    private AudioClip playerDamaged;
+    private const float playerDamagedVolume = 0.3f;
 
-    void Awake()
+    private void Awake()
     {
         playerDamaged = Resources.Load("Audio/Damage") as AudioClip;
     }
@@ -17,7 +17,7 @@ public class AudioPlayer : MonoBehaviour
         PlayClip(playerDamaged, playerDamagedVolume);
     }
 
-    void PlayClip(AudioClip clip, float volume)
+    private void PlayClip(AudioClip clip, float volume)
     {
         if (clip != null)
         {

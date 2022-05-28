@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Fireball : MonoBehaviour
 {
-    const float baseSpeed = 9.5f;
-    const float fireballLifespan = 7.5f;
-    float moveSpeed;
+    private const float baseSpeed = 9.5f;
+    private const float fireballLifespan = 7.5f;
+    private float moveSpeed;
 
-    PlayerMovement player;
-    Rigidbody2D rigidBody;
+    private PlayerMovement player;
+    private Rigidbody2D rigidBody;
 
-    void Start()
+    private void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
         player = FindObjectOfType<PlayerMovement>();
@@ -30,12 +30,12 @@ public class Fireball : MonoBehaviour
         StartCoroutine(ExtinguishFlames());
     }
 
-    void Update()
+    private void Update()
     {
         rigidBody.velocity = new Vector2(moveSpeed, 0);
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         var tag = other.tag;
         if (tag == "Enemy" || tag == "Ground")
@@ -46,7 +46,7 @@ public class Fireball : MonoBehaviour
         }
     }
 
-    IEnumerator ExtinguishFlames()
+    private IEnumerator ExtinguishFlames()
     {
         yield return new WaitForSecondsRealtime(fireballLifespan);
         Destroy(gameObject);

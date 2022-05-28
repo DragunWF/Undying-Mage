@@ -7,20 +7,20 @@ public class FlashEffect : MonoBehaviour
     [Tooltip("Flash Type")]
     [SerializeField] bool isUsingPlayer;
 
-    SpriteRenderer spriteRenderer;
-    Material flashMaterial;
-    Material originalMaterial;
+    private SpriteRenderer spriteRenderer;
+    private Material flashMaterial;
+    private Material originalMaterial;
 
-    Coroutine flashRoutine;
-    float effectDuration;
+    private Coroutine flashRoutine;
+    private float effectDuration;
 
-    void Awake()
+    private void Awake()
     {
         flashMaterial = Resources.Load("Materials/Flash Material") as Material;
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    void Start()
+    private void Start()
     {
         effectDuration = isUsingPlayer ?
                          GetComponent<PlayerState>().DamageCooldown :
@@ -35,13 +35,13 @@ public class FlashEffect : MonoBehaviour
         Invoke("StopFlash", effectDuration);
     }
 
-    void StopFlash()
+    private void StopFlash()
     {
         StopCoroutine(flashRoutine);
         spriteRenderer.material = originalMaterial;
     }
 
-    IEnumerator StartFlashEffect()
+    private IEnumerator StartFlashEffect()
     {
         var flashDuration = 0.25f;
 

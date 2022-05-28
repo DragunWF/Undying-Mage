@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class PlayerShooting : MonoBehaviour
 {
-    GameObject fireball;
-    Transform fireballSpawnPos;
+    private GameObject fireball;
+    private Transform fireballSpawnPos;
 
-    PlayerState playerState;
-    bool canCast = true;
+    private PlayerState playerState;
+    private bool canCast = true;
 
-    void Awake()
+    private void Awake()
     {
         playerState = GetComponent<PlayerState>();
         fireball = Resources.Load("Prefabs/Fireball") as GameObject;
         fireballSpawnPos = GameObject.Find("ProjectileSpawn").transform;
     }
 
-    void OnFire()
+    private void OnFire()
     {
         if (canCast)
         {
@@ -28,7 +28,7 @@ public class PlayerShooting : MonoBehaviour
         }
     }
 
-    IEnumerator CastingCooldown()
+    private IEnumerator CastingCooldown()
     {
         yield return new WaitForSecondsRealtime(playerState.FiringRate);
         canCast = true;

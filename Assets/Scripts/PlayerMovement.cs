@@ -5,12 +5,12 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    PlayerState playerState;
+    private PlayerState playerState;
 
-    BoxCollider2D playerCollider;
-    Rigidbody2D rigidBody;
-    Vector2 rawInput;
-    Animator animator;
+    private BoxCollider2D playerCollider;
+    private Rigidbody2D rigidBody;
+    private Vector2 rawInput;
+    private Animator animator;
 
     public bool IsFacingRight { get; private set; }
 
@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
         return transform.position;
     }
 
-    void Awake()
+    private void Awake()
     {
         playerState = GetComponent<PlayerState>();
 
@@ -30,17 +30,17 @@ public class PlayerMovement : MonoBehaviour
         IsFacingRight = true;
     }
 
-    void Update()
+    private void Update()
     {
         Move();
     }
 
-    void OnMove(InputValue value)
+    private void OnMove(InputValue value)
     {
         rawInput = value.Get<Vector2>();
     }
 
-    void OnJump()
+    private void OnJump()
     {
         if (playerCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
@@ -49,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void FlipSprite(bool isMoving)
+    private void FlipSprite(bool isMoving)
     {
         if (isMoving)
         {
@@ -59,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void Move()
+    private void Move()
     {
         var speed = rawInput.x * playerState.MoveSpeed;
 

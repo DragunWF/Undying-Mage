@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    GameObject[] enemies;
-    GameObject[] flyingEnemies;
+    private GameObject[] enemies;
+    private GameObject[] flyingEnemies;
 
-    Vector2 rightPos;
-    Vector2 leftPos;
+    private Vector2 rightPos;
+    private Vector2 leftPos;
 
-    float spawnIntervalMin = 0.5f;
-    float spawnIntervalMax = 1.5f;
+    private float spawnIntervalMin = 0.5f;
+    private float spawnIntervalMax = 1.5f;
 
     void Awake()
     {
