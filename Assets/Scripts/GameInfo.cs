@@ -15,19 +15,19 @@ public class GameInfo : MonoBehaviour
 
     #region Multiplier Getter Methods
 
-    public float GetDamageMultiplier()
+    public float DamageMultiplier
     {
-        return GetMultipler("damage");
+        get { return GetMultipler("damage"); }
     }
 
-    public float GetFireRateMultiplier()
+    public float FireRateMultiplier
     {
-        return GetMultipler("firerate");
+        get { return GetMultipler("firerate"); }
     }
 
-    public float GetAcrobaticsMultiplier()
+    public float AcrobaticsMultiplier
     {
-        return GetMultipler("acrobatics");
+        get { return GetMultipler("acrobatics"); }
     }
 
     #endregion
