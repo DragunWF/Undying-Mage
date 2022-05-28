@@ -22,6 +22,8 @@ public class PlayerState : MonoBehaviour
 
     private void Awake()
     {
+        flashEffect = GetComponent<FlashEffect>();
+        audioPlayer = FindObjectOfType<AudioPlayer>();
         gameInfo = FindObjectOfType<GameInfo>();
 
         MoveSpeed = 5.5f;
@@ -31,9 +33,6 @@ public class PlayerState : MonoBehaviour
         FiringRate = 1.2f;
 
         DamageCooldown = 1.5f;
-
-        flashEffect = GetComponent<FlashEffect>();
-        audioPlayer = FindObjectOfType<AudioPlayer>();
     }
 
     public void DamageHealth(int damageAmount)
