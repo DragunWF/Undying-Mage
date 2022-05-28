@@ -5,8 +5,6 @@ using UnityEngine;
 public class PlayerState : MonoBehaviour
 {
     [SerializeField] int health = 100;
-    private bool isInvincibilityOn;
-    private int deaths;
 
     public float MoveSpeed { get; private set; }
     public float JumpForce { get; private set; }
@@ -16,12 +14,15 @@ public class PlayerState : MonoBehaviour
 
     public float DamageCooldown { get; private set; }
 
+    private bool isInvincibilityOn;
+
     private FlashEffect flashEffect;
     private AudioPlayer audioPlayer;
+    private GameInfo gameInfo;
 
     private void Awake()
     {
-        deaths = 0;
+        gameInfo = FindObjectOfType<GameInfo>();
 
         MoveSpeed = 5.5f;
         JumpForce = 11.5f;
@@ -33,11 +34,6 @@ public class PlayerState : MonoBehaviour
 
         flashEffect = GetComponent<FlashEffect>();
         audioPlayer = FindObjectOfType<AudioPlayer>();
-    }
-
-    public void IncrementDeaths()
-    {
-        deaths += 1;
     }
 
     public void DamageHealth(int damageAmount)
