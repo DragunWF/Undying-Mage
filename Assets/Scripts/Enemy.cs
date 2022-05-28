@@ -18,8 +18,8 @@ public class Enemy : MonoBehaviour
 
     private PlayerState playerState;
     private PlayerMovement playerMovement;
-
     private int playerDamage;
+
     private FlashEffect flashEffect;
     public float DamageCooldown { get; private set; }
 
@@ -30,6 +30,8 @@ public class Enemy : MonoBehaviour
     public void DamageHealth()
     {
         health -= playerDamage;
+        flashEffect.Flash();
+
         if (health <= 0)
         {
             FindObjectOfType<InfoKeeper>().IncreaseScore(GetScore());
