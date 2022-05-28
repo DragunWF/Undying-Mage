@@ -6,6 +6,7 @@ public class PlayerState : MonoBehaviour
 {
     [SerializeField] int health = 100;
     bool isInvincibilityOn;
+    int deaths;
 
     public float MoveSpeed { get; private set; }
     public float JumpForce { get; private set; }
@@ -16,10 +17,12 @@ public class PlayerState : MonoBehaviour
     public float DamageCooldown { get; private set; }
 
     FlashEffect flashEffect;
-    int deaths;
+    AudioPlayer audioPlayer;
 
     void Awake()
     {
+        deaths = 0;
+
         MoveSpeed = 5.5f;
         JumpForce = 11.5f;
 
@@ -29,7 +32,7 @@ public class PlayerState : MonoBehaviour
         DamageCooldown = 1.5f;
 
         flashEffect = GetComponent<FlashEffect>();
-        deaths = 0;
+        audioPlayer = FindObjectOfType<AudioPlayer>();
     }
 
     public void IncrementDeaths()
@@ -43,7 +46,10 @@ public class PlayerState : MonoBehaviour
         {
             health -= damageAmount;
             isInvincibilityOn = true;
+
             flashEffect.Flash();
+            audioPlayer.PlayPlayerDamaged();
+
             StartCoroutine(TriggerDamageCooldown());
         }
     }
