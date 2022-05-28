@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class GameInfo : MonoBehaviour
 {
+    public int Deaths { get; private set; }
+
     private int damageLevel = 1;
     private int fireRateLevel = 1;
     private int acrobaticsLevel = 1; // Movement and jumping
 
     private float statIncreasePercentage = 0.25f;
     private float enemySpawnTimePercentage = 1;
-
-    public int Deaths { get; private set; }
 
     #region Multiplier Getter Methods
 

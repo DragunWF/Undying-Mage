@@ -16,12 +16,13 @@ public class Enemy : MonoBehaviour
     [Header("Enemy Type")]
     [SerializeField] bool isFlyingEnemy;
 
+    public float DamageCooldown { get; private set; }
+
     private PlayerState playerState;
     private PlayerMovement playerMovement;
-    private int playerDamage;
 
     private FlashEffect flashEffect;
-    public float DamageCooldown { get; private set; }
+    private int playerDamage;
 
     // Only for flying enemies
     private int lifeSpan = 15;

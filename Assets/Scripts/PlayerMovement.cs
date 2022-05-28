@@ -5,14 +5,14 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private PlayerState playerState;
+    public bool IsFacingRight { get; private set; }
 
+    private PlayerState playerState;
     private BoxCollider2D playerCollider;
     private Rigidbody2D rigidBody;
+
     private Vector2 rawInput;
     private Animator animator;
-
-    public bool IsFacingRight { get; private set; }
 
     public Vector2 GetPosition()
     {
