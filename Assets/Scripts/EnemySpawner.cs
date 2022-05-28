@@ -13,7 +13,7 @@ public class EnemySpawner : MonoBehaviour
     private float spawnIntervalMin = 0.5f;
     private float spawnIntervalMax = 1.5f;
 
-    void Awake()
+    private void Awake()
     {
         enemies = new GameObject[4] {
             Resources.Load("Prefabs/Enemy [Fighter]") as GameObject,
@@ -30,23 +30,23 @@ public class EnemySpawner : MonoBehaviour
         leftPos = GameObject.Find("LeftPosition").transform.position;
     }
 
-    void Start()
+    private void Start()
     {
         StartCoroutine(SpawnEnemies());
     }
 
-    float GetSpawnInterval()
+    private float GetSpawnInterval()
     {
         return Random.Range(spawnIntervalMin, spawnIntervalMax);
     }
 
-    Vector2 GetRandomPosition()
+    private Vector2 GetRandomPosition()
     {
         var positions = new Vector2[2] { leftPos, rightPos };
         return positions[Random.Range(0, positions.Length)];
     }
 
-    GameObject ChooseRandomEnemy()
+    private GameObject ChooseRandomEnemy()
     {
         GameObject[] chosenGroup;
 
@@ -56,7 +56,7 @@ public class EnemySpawner : MonoBehaviour
         return chosenGroup[Random.Range(0, chosenGroup.Length)];
     }
 
-    IEnumerator SpawnEnemies()
+    private IEnumerator SpawnEnemies()
     {
         while (true)
         {
