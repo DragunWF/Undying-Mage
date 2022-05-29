@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class InfoKeeper : MonoBehaviour
+public class GameUI : MonoBehaviour
 {
     private TextMeshProUGUI scoreText;
     private TextMeshProUGUI deathText;
