@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class StartMenuMonster : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
+    private const float moveSpeed = -1.5f;
+    private Rigidbody2D rigidBody;
 
+    private Animator[] animators;
+
+    private void Awake()
+    {
+        // animators = new Animator[4] {
+        //     Resources.Load("Animations/")
+        // }
+        rigidBody = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-
+        var moveVelocity = new Vector2(moveSpeed, rigidBody.velocity.y);
+        rigidBody.velocity = moveVelocity;
     }
 }
