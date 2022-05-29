@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class StartMenuMonster : MonoBehaviour
 {
-    private const float moveSpeed = -1.5f;
-    private const float lifespan = 8.5f;
+    private float[] moveSpeeds = new float[3] { -1.5f, -2.5f, -3.5f };
+    private float chosenMoveSpeed;
+    private const float lifespan = 16.5f;
     private Rigidbody2D rigidBody;
 
     private Animator animator;
@@ -28,13 +29,14 @@ public class StartMenuMonster : MonoBehaviour
         RuntimeAnimatorController chosenController;
         chosenController = animators[Random.Range(0, animators.Length)];
         animator.runtimeAnimatorController = chosenController;
+        chosenMoveSpeed = moveSpeeds[Random.Range(0, moveSpeeds.Length)];
 
         Invoke("DespawnMonster", lifespan);
     }
 
     private void Update()
     {
-        var moveVelocity = new Vector2(moveSpeed, rigidBody.velocity.y);
+        var moveVelocity = new Vector2(chosenMoveSpeed, rigidBody.velocity.y);
         rigidBody.velocity = moveVelocity;
     }
 
