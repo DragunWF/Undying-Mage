@@ -13,6 +13,8 @@ public class GameInfo : MonoBehaviour
     private float statIncreasePercentage = 0.25f;
     private float enemySpawnTimePercentage = 1;
 
+    static private GameInfo instance;
+
     #region Multiplier Getter Methods
 
     public float DamageMultiplier
@@ -67,6 +69,21 @@ public class GameInfo : MonoBehaviour
     private void Awake()
     {
         ResetGame();
+        ManageSingleton();
+    }
+
+    private void ManageSingleton()
+    {
+        if (instance != null)
+        {
+            gameObject.SetActive(false);
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
     }
 
     private float GetMultipler(string type)
