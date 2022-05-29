@@ -9,7 +9,6 @@ public class UpgradeMenuUI : MonoBehaviour
     private TextMeshProUGUI pointsText;
     private TextMeshProUGUI deathsText;
     private TextMeshProUGUI warningText;
-    private int points = 0;
 
     private TextMeshProUGUI acrobaticsLevel;
     private TextMeshProUGUI fireRateLevel;
@@ -78,7 +77,7 @@ public class UpgradeMenuUI : MonoBehaviour
 
     private bool HasEnoughPoints()
     {
-        if (points >= 100)
+        if (gameInfo.Points >= 100)
             return true;
         warningText.gameObject.SetActive(true);
         return false;
