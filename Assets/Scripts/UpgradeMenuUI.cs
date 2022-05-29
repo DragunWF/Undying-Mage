@@ -6,8 +6,10 @@ using TMPro;
 
 public class UpgradeMenuUI : MonoBehaviour
 {
-    private TextMeshProUGUI scoreText;
+    private TextMeshProUGUI pointsText;
     private TextMeshProUGUI deathsText;
+    private TextMeshProUGUI warningText;
+    private int points = 0;
 
     private TextMeshProUGUI acrobaticsLevel;
     private TextMeshProUGUI fireRateLevel;
@@ -17,20 +19,32 @@ public class UpgradeMenuUI : MonoBehaviour
 
     public void UpgradeAcrobatics()
     {
-        gameInfo.IncrementAcrobaticsLevel();
-        SetTextUI();
+        if (HasEnoughPoints())
+        {
+            gameInfo.IncrementAcrobaticsLevel();
+            gameInfo.ExecuteUpgradeCost();
+            SetTextUI();
+        }
     }
 
     public void UpgradeFireRate()
     {
-        gameInfo.IncrementFireRateLevel();
-        SetTextUI();
+        if (HasEnoughPoints())
+        {
+            gameInfo.IncrementFireRateLevel();
+            gameInfo.ExecuteUpgradeCost();
+            SetTextUI();
+        }
     }
 
-    public void UpgradeDamageLevel()
+    public void UpgradeDamage()
     {
-        gameInfo.IncrementDamageLevel();
-        SetTextUI();
+        if (HasEnoughPoints())
+        {
+            gameInfo.IncrementDamageLevel();
+            gameInfo.ExecuteUpgradeCost();
+            SetTextUI();
+        }
     }
 
     private void Awake()
@@ -38,11 +52,17 @@ public class UpgradeMenuUI : MonoBehaviour
         acrobaticsLevel = GameObject.Find("AcrobaticsLevel").GetComponent<TextMeshProUGUI>();
         fireRateLevel = GameObject.Find("FireRateLevel").GetComponent<TextMeshProUGUI>();
         damageLevel = GameObject.Find("DamageLevel").GetComponent<TextMeshProUGUI>();
+
+        pointsText = GameObject.Find("PointsText").GetComponent<TextMeshProUGUI>();
+        deathsText = GameObject.Find("DeathsText").GetComponent<TextMeshProUGUI>();
+        warningText = GameObject.Find("WarningText").GetComponent<TextMeshProUGUI>();
+
         gameInfo = FindObjectOfType<GameInfo>();
     }
 
     private void Start()
     {
+        warningText.gameObject.SetActive(false);
         SetTextUI();
     }
 
@@ -51,5 +71,16 @@ public class UpgradeMenuUI : MonoBehaviour
         acrobaticsLevel.text = string.Format("Acrobatics: Lvl {0}", gameInfo.AcrobaticsLevel);
         fireRateLevel.text = string.Format("Firerate: Lvl {0}", gameInfo.FireRateLevel);
         damageLevel.text = string.Format("Damage: Lvl {0}", gameInfo.DamageLevel);
+
+        pointsText.text = string.Format("Points:{0}", gameInfo.Score);
+        deathsText.text = string.Format("Deaths:{0}", gameInfo.Deaths);
+    }
+
+    private bool HasEnoughPoints()
+    {
+        if (points >= 100)
+            return true;
+        warningText.gameObject.SetActive(true);
+        return false;
     }
 }
