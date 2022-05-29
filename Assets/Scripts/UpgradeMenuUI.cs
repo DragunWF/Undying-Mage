@@ -61,6 +61,7 @@ public class UpgradeMenuUI : MonoBehaviour
 
     private void Start()
     {
+        gameInfo.TransferScoreToPoints();
         warningText.gameObject.SetActive(false);
         SetTextUI();
     }
@@ -71,7 +72,7 @@ public class UpgradeMenuUI : MonoBehaviour
         fireRateLevel.text = string.Format("Firerate: Lvl {0}", gameInfo.FireRateLevel);
         damageLevel.text = string.Format("Damage: Lvl {0}", gameInfo.DamageLevel);
 
-        pointsText.text = string.Format("Points:{0}", gameInfo.Score);
+        pointsText.text = string.Format("Points:{0}", gameInfo.Points);
         deathsText.text = string.Format("Deaths:{0}", gameInfo.Deaths);
     }
 

@@ -18,21 +18,6 @@ public class GameInfo : MonoBehaviour
     static private GameInfo instance;
     private GameUI gameUI;
 
-    public void ExecuteUpgradeCost()
-    {
-        var upgradeCost = 100;
-        Points -= upgradeCost;
-    }
-
-    public void IncreaseScore(int gainAmount)
-    {
-        if (gameUI != null)
-        {
-            Score += gainAmount;
-            gameUI.SetScoreText();
-        }
-    }
-
     #region Multiplier Getter Methods
 
     public float DamageMultiplier
@@ -75,6 +60,27 @@ public class GameInfo : MonoBehaviour
     }
 
     #endregion
+
+    public void ExecuteUpgradeCost()
+    {
+        var upgradeCost = 100;
+        Points -= upgradeCost;
+    }
+
+    public void IncreaseScore(int gainAmount)
+    {
+        if (gameUI != null)
+        {
+            Score += gainAmount;
+            gameUI.SetScoreText();
+        }
+    }
+
+    public void TransferScoreToPoints()
+    {
+        Points += Score;
+        Score = 0;
+    }
 
     public void ResetGame()
     {
