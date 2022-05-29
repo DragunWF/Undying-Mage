@@ -18,13 +18,17 @@ public class PlayerState : MonoBehaviour
 
     private FlashEffect flashEffect;
     private AudioPlayer audioPlayer;
+
     private GameInfo gameInfo;
+    private GameManager gameManager;
 
     private void Awake()
     {
         flashEffect = GetComponent<FlashEffect>();
         audioPlayer = FindObjectOfType<AudioPlayer>();
+
         gameInfo = FindObjectOfType<GameInfo>();
+        gameManager = FindObjectOfType<GameManager>();
 
         MoveSpeed = 5.5f;
         JumpForce = 11.5f;
@@ -40,13 +44,20 @@ public class PlayerState : MonoBehaviour
         if (!isInvincibilityOn)
         {
             health -= damageAmount;
-            isInvincibilityOn = true;
+            if (health <= 0)
+                Death();
 
+            isInvincibilityOn = true;
             flashEffect.Flash();
             audioPlayer.PlayPlayerDamaged();
 
             StartCoroutine(TriggerDamageCooldown());
         }
+    }
+
+    private void Death()
+    {
+        gameManager.LoadUpgradeMenu();
     }
 
     private IEnumerator TriggerDamageCooldown()
