@@ -4,15 +4,29 @@ using UnityEngine;
 
 public class StartMenuSpawner : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
+    private const int maxSpawnTimeInterval = 6;
+    private const int minSpawnTimeInterval = 2;
 
+    private GameObject monster;
+    private Transform spawnPos;
+
+    private void Awake()
+    {
+        spawnPos = GameObject.Find("SpawnPosition").transform;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void SpawnMonster()
     {
+        // Instantiate()
+    }
 
+    private IEnumerator SpawnMonsters()
+    {
+        while (true)
+        {
+
+            yield return new WaitForSeconds(Random.Range(minSpawnTimeInterval,
+                                                         maxSpawnTimeInterval));
+        }
     }
 }
