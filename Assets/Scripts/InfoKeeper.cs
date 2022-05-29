@@ -19,7 +19,7 @@ public class InfoKeeper : MonoBehaviour
     {
         scoreText = GameObject.Find("Score Text")
                     .GetComponent<TextMeshProUGUI>();
-        deathText = GameObject.Find("Death Text")
+        deathText = GameObject.Find("Deaths Text")
                     .GetComponent<TextMeshProUGUI>();
     }
 
