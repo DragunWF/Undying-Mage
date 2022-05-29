@@ -17,7 +17,7 @@ public class UpgradeMenuUI : MonoBehaviour
 
     public void UpgradeAcrobatics()
     {
-        gameInfo.IncrementDamageLevel();
+        gameInfo.IncrementAcrobaticsLevel();
         SetTextUI();
     }
 
@@ -38,15 +38,18 @@ public class UpgradeMenuUI : MonoBehaviour
         acrobaticsLevel = GameObject.Find("AcrobaticsLevel").GetComponent<TextMeshProUGUI>();
         fireRateLevel = GameObject.Find("FireRateLevel").GetComponent<TextMeshProUGUI>();
         damageLevel = GameObject.Find("DamageLevel").GetComponent<TextMeshProUGUI>();
-
         gameInfo = FindObjectOfType<GameInfo>();
+    }
+
+    private void Start()
+    {
         SetTextUI();
     }
 
     private void SetTextUI()
     {
-        acrobaticsLevel.text = string.Format("Acrobatics: Lvl {0}");
-        fireRateLevel.text = string.Format("Firerate: Lvl {0}");
-        damageLevel.text = string.Format("Damage: Lvl {0}");
+        acrobaticsLevel.text = string.Format("Acrobatics: Lvl {0}", gameInfo.AcrobaticsLevel);
+        fireRateLevel.text = string.Format("Firerate: Lvl {0}", gameInfo.FireRateLevel);
+        damageLevel.text = string.Format("Damage: Lvl {0}", gameInfo.DamageLevel);
     }
 }
