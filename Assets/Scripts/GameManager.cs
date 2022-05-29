@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
 
     public void LoadMainMenu()
     {
+        ResetGameInfo();
         SceneManager.LoadScene(mainMenuSceneIndex);
     }
 
@@ -22,5 +23,12 @@ public class GameManager : MonoBehaviour
     public void LoadUpgradeMenu()
     {
         SceneManager.LoadScene(upgradeMenuSceneIndex);
+    }
+
+    private void ResetGameInfo()
+    {
+        var gameInfo = FindObjectOfType<GameInfo>();
+        if (gameInfo != null)
+            Destroy(gameInfo.gameObject);
     }
 }
