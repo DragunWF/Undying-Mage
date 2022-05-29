@@ -19,6 +19,7 @@ public class PlayerState : MonoBehaviour
     private FlashEffect flashEffect;
     private AudioPlayer audioPlayer;
 
+    private GameUI gameUI;
     private GameInfo gameInfo;
     private GameManager gameManager;
 
@@ -27,6 +28,7 @@ public class PlayerState : MonoBehaviour
         flashEffect = GetComponent<FlashEffect>();
         audioPlayer = FindObjectOfType<AudioPlayer>();
 
+        gameUI = FindObjectOfType<GameUI>();
         gameInfo = FindObjectOfType<GameInfo>();
         gameManager = FindObjectOfType<GameManager>();
 
@@ -57,6 +59,8 @@ public class PlayerState : MonoBehaviour
 
     private void Death()
     {
+        gameInfo.IncrementDeaths();
+        gameUI.SetDeathText();
         gameManager.LoadUpgradeMenu();
     }
 
