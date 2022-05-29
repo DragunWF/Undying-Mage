@@ -16,11 +16,21 @@ public class GameInfo : MonoBehaviour
     private float enemySpawnTimePercentage = 1;
 
     static private GameInfo instance;
+    private GameUI gameUI;
 
     public void ExecuteUpgradeCost()
     {
         var upgradeCost = 100;
         Points -= upgradeCost;
+    }
+
+    public void IncreaseScore(int gainAmount)
+    {
+        if (gameUI != null)
+        {
+            Score += gainAmount;
+            gameUI.SetScoreText();
+        }
     }
 
     #region Multiplier Getter Methods
@@ -76,6 +86,7 @@ public class GameInfo : MonoBehaviour
 
     private void Awake()
     {
+        gameUI = FindObjectOfType<GameUI>();
         ResetGame();
         ManageSingleton();
     }
