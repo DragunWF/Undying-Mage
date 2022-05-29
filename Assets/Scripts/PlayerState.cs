@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerState : MonoBehaviour
 {
-    [SerializeField] int health = 100;
+    public float Health { get; private set; }
 
     public float MoveSpeed { get; private set; }
     public float JumpForce { get; private set; }
@@ -25,6 +25,8 @@ public class PlayerState : MonoBehaviour
 
     private void Awake()
     {
+        Health = 100;
+
         flashEffect = GetComponent<FlashEffect>();
         audioPlayer = FindObjectOfType<AudioPlayer>();
 
@@ -45,8 +47,9 @@ public class PlayerState : MonoBehaviour
     {
         if (!isInvincibilityOn)
         {
-            health -= damageAmount;
-            if (health <= 0)
+            Health -= damageAmount;
+            gameUI.UpdateHealthBar();
+            if (Health <= 0)
                 Death();
 
             isInvincibilityOn = true;
