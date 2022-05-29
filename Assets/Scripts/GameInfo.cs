@@ -5,6 +5,8 @@ using UnityEngine;
 public class GameInfo : MonoBehaviour
 {
     public int Deaths { get; private set; }
+    public int Score { get; private set; }
+    public int Points { get; private set; }
 
     public int DamageLevel { get; private set; }
     public int FireRateLevel { get; private set; }
@@ -14,6 +16,12 @@ public class GameInfo : MonoBehaviour
     private float enemySpawnTimePercentage = 1;
 
     static private GameInfo instance;
+
+    public void ExecuteUpgradeCost()
+    {
+        var upgradeCost = 100;
+        Points -= upgradeCost;
+    }
 
     #region Multiplier Getter Methods
 
