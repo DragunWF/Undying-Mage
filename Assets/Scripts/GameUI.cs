@@ -7,12 +7,17 @@ public class GameUI : MonoBehaviour
 {
     private TextMeshProUGUI scoreText;
     private TextMeshProUGUI deathText;
-    private int score = 0;
 
-    public void IncreaseScore(int gainAmount)
+    private GameInfo gameInfo;
+
+    public void SetScoreText()
     {
-        score += gainAmount;
-        scoreText.text = string.Format("Score:{0}", score);
+        scoreText.text = string.Format("Score:{0}", gameInfo.Score);
+    }
+
+    public void SetDeathText()
+    {
+        deathText.text = string.Format("Deaths:{0}", gameInfo.Deaths);
     }
 
     private void Awake()
@@ -21,12 +26,12 @@ public class GameUI : MonoBehaviour
                     .GetComponent<TextMeshProUGUI>();
         deathText = GameObject.Find("Deaths Text")
                     .GetComponent<TextMeshProUGUI>();
+        gameInfo = FindObjectOfType<GameInfo>();
     }
 
     private void Start()
     {
-        var deathCount = FindObjectOfType<GameInfo>().Deaths;
-        deathText.text = string.Format("Deaths:{0}", deathCount);
-        IncreaseScore(score); // Purely just to set the score
+        SetScoreText();
+        SetDeathText();
     }
 }
