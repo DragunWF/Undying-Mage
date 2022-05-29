@@ -6,9 +6,9 @@ public class GameInfo : MonoBehaviour
 {
     public int Deaths { get; private set; }
 
-    private int damageLevel = 1;
-    private int fireRateLevel = 1;
-    private int acrobaticsLevel = 1; // Movement and jumping
+    public int DamageLevel { get; private set; }
+    public int FireRateLevel { get; private set; }
+    public int AcrobaticsLevel { get; private set; }
 
     private float statIncreasePercentage = 0.25f;
     private float enemySpawnTimePercentage = 1;
@@ -38,17 +38,17 @@ public class GameInfo : MonoBehaviour
 
     public void IncrementDamageLevel()
     {
-        damageLevel++;
+        DamageLevel++;
     }
 
     public void IncrementFireRateLevel()
     {
-        fireRateLevel++;
+        FireRateLevel++;
     }
 
     public void IncrementAcrobaticsLevel()
     {
-        acrobaticsLevel++;
+        AcrobaticsLevel++;
     }
 
     public void IncrementDeaths()
@@ -61,9 +61,9 @@ public class GameInfo : MonoBehaviour
     public void ResetGame()
     {
         Deaths = 0;
-        damageLevel = 1;
-        fireRateLevel = 1;
-        acrobaticsLevel = 1;
+        DamageLevel = 1;
+        FireRateLevel = 1;
+        AcrobaticsLevel = 1;
     }
 
     private void Awake()
@@ -93,13 +93,13 @@ public class GameInfo : MonoBehaviour
         switch (type.ToLower())
         {
             case "damage":
-                baseLevel = damageLevel;
+                baseLevel = DamageLevel;
                 break;
             case "firerate":
-                baseLevel = fireRateLevel;
+                baseLevel = FireRateLevel;
                 break;
             case "acrobatics":
-                baseLevel = acrobaticsLevel;
+                baseLevel = AcrobaticsLevel;
                 break;
             default:
                 throw new System.Exception("Unknown Stat Type Entered");
