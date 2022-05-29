@@ -8,23 +8,24 @@ public class StartMenuSpawner : MonoBehaviour
     private const int minSpawnTimeInterval = 2;
 
     private GameObject monster;
-    private Transform spawnPos;
+    private Vector2 spawnPos;
 
     private void Awake()
     {
-        spawnPos = GameObject.Find("SpawnPosition").transform;
+        monster = Resources.Load("Prefabs/StartMenuMonster") as GameObject;
+        spawnPos = GameObject.Find("SpawnPosition").transform.position;
     }
 
-    private void SpawnMonster()
+    private void Start()
     {
-        // Instantiate()
+        StartCoroutine(SpawnMonsters());
     }
 
     private IEnumerator SpawnMonsters()
     {
         while (true)
         {
-
+            Instantiate(monster, spawnPos, Quaternion.identity);
             yield return new WaitForSeconds(Random.Range(minSpawnTimeInterval,
                                                          maxSpawnTimeInterval));
         }
