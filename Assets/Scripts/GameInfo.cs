@@ -90,6 +90,12 @@ public class GameInfo : MonoBehaviour
         AcrobaticsLevel = 1;
     }
 
+    public void RedefineGameUI()
+    {
+        if (gameUI == null)
+            gameUI = FindObjectOfType<GameUI>();
+    }
+
     private void Awake()
     {
         gameUI = FindObjectOfType<GameUI>();

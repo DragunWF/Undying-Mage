@@ -45,6 +45,8 @@ public class GameUI : MonoBehaviour
 
     private void Start()
     {
+        gameInfo.RedefineGameUI();
+
         healthBar.maxValue = playerState.Health;
         healthBar.value = playerState.Health;
 
