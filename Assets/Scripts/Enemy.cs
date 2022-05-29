@@ -35,7 +35,7 @@ public class Enemy : MonoBehaviour
 
         if (health <= 0)
         {
-            FindObjectOfType<InfoKeeper>().IncreaseScore(GetScore());
+            FindObjectOfType<GameInfo>().IncreaseScore(GetScore());
             Destroy(gameObject);
         }
     }
