@@ -27,7 +27,7 @@ public class Fireball : MonoBehaviour
             transform.localScale = new Vector2(-1, 1);
         }
 
-        StartCoroutine(ExtinguishFlames());
+        Destroy(gameObject, fireballLifespan);
     }
 
     private void Update()
@@ -42,11 +42,5 @@ public class Fireball : MonoBehaviour
             other.GetComponentInParent<Enemy>().DamageHealth();
             Destroy(gameObject);
         }
-    }
-
-    private IEnumerator ExtinguishFlames()
-    {
-        yield return new WaitForSecondsRealtime(fireballLifespan);
-        Destroy(gameObject);
     }
 }

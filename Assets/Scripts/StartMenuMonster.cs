@@ -31,17 +31,12 @@ public class StartMenuMonster : MonoBehaviour
         animator.runtimeAnimatorController = chosenController;
         chosenMoveSpeed = moveSpeeds[Random.Range(0, moveSpeeds.Length)];
 
-        Invoke("DespawnMonster", lifespan);
+        Destroy(gameObject, lifespan);
     }
 
     private void Update()
     {
         var moveVelocity = new Vector2(chosenMoveSpeed, rigidBody.velocity.y);
         rigidBody.velocity = moveVelocity;
-    }
-
-    private void DespawnMonster()
-    {
-        Destroy(gameObject);
     }
 }

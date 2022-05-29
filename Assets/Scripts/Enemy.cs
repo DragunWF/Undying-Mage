@@ -25,7 +25,7 @@ public class Enemy : MonoBehaviour
     private int playerDamage;
 
     // Only for flying enemies
-    private int lifeSpan = 15;
+    private int lifespan = 15;
     private int xAxis;
 
     public void DamageHealth()
@@ -56,7 +56,7 @@ public class Enemy : MonoBehaviour
         {
             PickFlyingDirection();
             FlipSprite(playerMovement.GetPosition().x);
-            Invoke("ExpireFlyingEnemy", lifeSpan);
+            Destroy(gameObject, lifespan);
         }
     }
 
@@ -98,11 +98,6 @@ public class Enemy : MonoBehaviour
     {
         var playerPosX = playerMovement.GetPosition().x;
         xAxis = playerPosX >= transform.position.x ? 1 : -1;
-    }
-
-    private void ExpireFlyingEnemy()
-    {
-        Destroy(gameObject);
     }
 
     private int GetScore()
