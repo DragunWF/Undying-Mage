@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8115379505693997156}
   - component: {fileID: 7459505729518823500}
   - component: {fileID: 7459505729518823501}
+  - component: {fileID: 6005539680405896818}
   m_Layer: 7
   m_Name: Flying Enemy
   m_TagString: Enemy
@@ -139,6 +140,27 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!50 &6005539680405896818
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7459505729518823502}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &7459505729985666013
 GameObject:
   m_ObjectHideFlags: 0
