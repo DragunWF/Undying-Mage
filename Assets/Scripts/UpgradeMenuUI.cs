@@ -70,9 +70,9 @@ public class UpgradeMenuUI : MonoBehaviour
 
     private void SetTextUI()
     {
-        acrobaticsLevel.text = string.Format("Acrobatics: Lvl {0}", gameInfo.AcrobaticsLevel);
-        fireRateLevel.text = string.Format("Firerate: Lvl {0}", gameInfo.FireRateLevel);
-        damageLevel.text = string.Format("Damage: Lvl {0}", gameInfo.DamageLevel);
+        acrobaticsLevel.text = string.Format("Acrobatics: Lvl {0}", gameInfo.AcrobaticsLevel + 1);
+        fireRateLevel.text = string.Format("Firerate: Lvl {0}", gameInfo.FireRateLevel + 1);
+        damageLevel.text = string.Format("Damage: Lvl {0}", gameInfo.DamageLevel + 1);
 
         pointsText.text = string.Format("Points:{0}", gameInfo.Points);
         deathsText.text = string.Format("Deaths:{0}", gameInfo.Deaths);
