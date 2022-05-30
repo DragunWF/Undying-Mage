@@ -15,6 +15,7 @@ public class UpgradeMenuUI : MonoBehaviour
     private TextMeshProUGUI damageLevel;
 
     private GameInfo gameInfo;
+    private AudioPlayer audioPlayer;
 
     public void UpgradeAcrobatics()
     {
@@ -57,6 +58,7 @@ public class UpgradeMenuUI : MonoBehaviour
         warningText = GameObject.Find("WarningText").GetComponent<TextMeshProUGUI>();
 
         gameInfo = FindObjectOfType<GameInfo>();
+        audioPlayer = FindObjectOfType<AudioPlayer>();
     }
 
     private void Start()
@@ -79,7 +81,12 @@ public class UpgradeMenuUI : MonoBehaviour
     private bool HasEnoughPoints()
     {
         if (gameInfo.Points >= 100)
+        {
+            audioPlayer.PlayUpgrade();
             return true;
+        }
+
+        audioPlayer.PlayError();
         warningText.gameObject.SetActive(true);
         return false;
     }
