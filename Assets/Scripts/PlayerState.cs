@@ -62,6 +62,15 @@ public class PlayerState : MonoBehaviour
         DamageCooldown = 1.5f;
     }
 
+    private void Start()
+    {
+        MoveSpeed += gameInfo.AcrobaticsLevel * 1;
+        JumpForce += gameInfo.AcrobaticsLevel * 3.5f;
+
+        FireballDamage += gameInfo.DamageLevel * 15;
+        FiringRate -= gameInfo.FireRateLevel * 0.25f;
+    }
+
     private void Death()
     {
         particlesPlayer.PlayDeathEffect(transform.position);
