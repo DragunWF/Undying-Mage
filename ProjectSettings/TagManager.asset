@@ -59,6 +59,9 @@ TagManager:
   - name: Enemy
     uniqueID: 3950600849
     locked: 0
+  - name: Particles
+    uniqueID: 576921267
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
