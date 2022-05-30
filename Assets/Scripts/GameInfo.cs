@@ -84,9 +84,9 @@ public class GameInfo : MonoBehaviour
     public void ResetGame()
     {
         Deaths = 0;
-        DamageLevel = 1;
-        FireRateLevel = 1;
-        AcrobaticsLevel = 1;
+        DamageLevel = 0;
+        FireRateLevel = 0;
+        AcrobaticsLevel = 0;
     }
 
     public void RedefineGameUI()
