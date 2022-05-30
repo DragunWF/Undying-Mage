@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerShooting : MonoBehaviour
 {
+    private AudioPlayer audioPlayer;
     private GameObject fireball;
     private Transform fireballSpawnPos;
 
@@ -12,6 +13,7 @@ public class PlayerShooting : MonoBehaviour
 
     private void Awake()
     {
+        audioPlayer = FindObjectOfType<AudioPlayer>();
         playerState = GetComponent<PlayerState>();
         fireball = Resources.Load("Prefabs/Fireball") as GameObject;
         fireballSpawnPos = GameObject.Find("ProjectileSpawn").transform;
@@ -21,10 +23,10 @@ public class PlayerShooting : MonoBehaviour
     {
         if (canCast)
         {
+            audioPlayer.PlayShoot();
             canCast = false;
             Instantiate(fireball, fireballSpawnPos.position, transform.rotation);
             StartCoroutine(CastingCooldown());
-            // Add fireball sound effect in the future
         }
     }
 

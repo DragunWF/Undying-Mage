@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector2 rawInput;
     private Animator animator;
+    private AudioPlayer audioPlayer;
 
     public Vector2 GetPosition()
     {
@@ -21,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
+        audioPlayer = FindObjectOfType<AudioPlayer>();
         playerState = GetComponent<PlayerState>();
 
         animator = GetComponent<Animator>();
@@ -45,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
         if (playerCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
             rigidBody.velocity += new Vector2(rigidBody.velocity.x, playerState.JumpForce);
-            // Add jump sound effect in the future
+            audioPlayer.PlayJump();
         }
     }
 
