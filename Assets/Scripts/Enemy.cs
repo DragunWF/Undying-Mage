@@ -5,8 +5,8 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [Header("Enemy Stats")]
-    [SerializeField] int health = 50;
-    [SerializeField] int damage = 15;
+    [SerializeField] float health = 50;
+    [SerializeField] float damage = 15;
     [SerializeField] float moveSpeed = 1.1f;
 
     [Header("Score Gain")]
@@ -20,6 +20,7 @@ public class Enemy : MonoBehaviour
 
     private PlayerState playerState;
     private PlayerMovement playerMovement;
+    private EnemySpawner enemySpawner;
 
     private FlashEffect flashEffect;
     private int playerDamage;
@@ -54,6 +55,7 @@ public class Enemy : MonoBehaviour
 
     private void Awake()
     {
+        enemySpawner = FindObjectOfType<EnemySpawner>();
         flashEffect = GetComponent<FlashEffect>();
         DamageCooldown = 0.25f;
 
@@ -64,6 +66,7 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
+        SetStats();
         if (isFlyingEnemy)
         {
             PickFlyingDirection();
@@ -80,7 +83,15 @@ public class Enemy : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Player")
-            playerState.DamageHealth(damage);
+            playerState.DamageHealth(Mathf.RoundToInt(damage));
+    }
+
+    private void SetStats()
+    {
+        var intensity = enemySpawner.GetIntensity();
+        health += health * (intensity * 0.2f);
+        damage += damage * (intensity * 0.15f);
+        moveSpeed += intensity * 0.1f;
     }
 
     private void Move()
