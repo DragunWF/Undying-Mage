@@ -90,6 +90,10 @@ public class UpgradeMenuUI : MonoBehaviour
         gameInfo.TransferScoreToPoints();
         warningText.gameObject.SetActive(false);
         SetTextUI();
+
+        var levelTypes = new string[3] { "damage", "acrobatics", "firerate " };
+        foreach (var type in levelTypes)
+            CheckMaxLevel(type);
     }
 
     private void SetTextUI()
