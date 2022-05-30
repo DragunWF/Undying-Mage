@@ -43,6 +43,7 @@ public class Enemy : MonoBehaviour
 
         if (health <= 0)
         {
+            FindObjectOfType<ParticlesPlayer>().PlayDeathEffect(transform.position);
             FindObjectOfType<GameInfo>().IncreaseScore(GetScore());
             Destroy(gameObject);
         }
