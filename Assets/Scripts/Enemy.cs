@@ -24,9 +24,16 @@ public class Enemy : MonoBehaviour
     private FlashEffect flashEffect;
     private int playerDamage;
 
-    // Only for flying enemies
+    #region Player Death Fields
+    private bool playerAlive = true;
+    private bool finalFlip;
+    private float lastPlayerPosX;
+    #endregion
+
+    #region Flying Enemy Only Fields
     private int lifespan = 15;
     private int xAxis;
+    #endregion
 
     public void DamageHealth()
     {
@@ -38,6 +45,11 @@ public class Enemy : MonoBehaviour
             FindObjectOfType<GameInfo>().IncreaseScore(GetScore());
             Destroy(gameObject);
         }
+    }
+
+    public void OnPlayerDeath()
+    {
+        playerAlive = false;
     }
 
     private void Awake()
@@ -78,9 +90,22 @@ public class Enemy : MonoBehaviour
 
         if (!isFlyingEnemy)
         {
-            var playerPosX = playerMovement.GetPosition().x;
-            direction = new Vector2(playerPosX, transform.position.y);
-            FlipSprite(playerPosX);
+            if (playerAlive)
+            {
+                var playerPosX = playerMovement.GetPosition().x;
+                direction = new Vector2(playerPosX, transform.position.y);
+                lastPlayerPosX = playerPosX;
+                FlipSprite(playerPosX);
+            }
+            else
+            {
+                var oppositeDirection = lastPlayerPosX >= 0 ? -1 : 1;
+                var destination = 1000 * oppositeDirection;
+                direction = new Vector2(destination, transform.position.y);
+
+                FlipSprite(oppositeDirection);
+                finalFlip = true;
+            }
         }
         else
             direction = new Vector2(xAxis * 1000, transform.position.y);
@@ -90,8 +115,9 @@ public class Enemy : MonoBehaviour
 
     private void FlipSprite(float playerPosX)
     {
-        transform.localScale = playerPosX >= transform.position.x ?
-                               new Vector2(1, 1) : new Vector2(-1, 1);
+        if (!finalFlip)
+            transform.localScale = playerPosX >= transform.position.x ?
+                                   new Vector2(1, 1) : new Vector2(-1, 1);
     }
 
     private void PickFlyingDirection()
