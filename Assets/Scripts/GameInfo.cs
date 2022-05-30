@@ -12,10 +12,36 @@ public class GameInfo : MonoBehaviour
     public int FireRateLevel { get; private set; }
     public int AcrobaticsLevel { get; private set; }
 
-    private const float statIncreasePercentage = 0.25f;
+    private const int maxAcrobaticsLevel = 4;
+    private const int maxFireRateLevel = 9;
+    private const int maxDamageLevel = 14;
 
     static private GameInfo instance;
     private GameUI gameUI;
+
+    public bool CheckLevelLimit(string statType)
+    {
+        int limit = 0;
+        int level = 0;
+
+        switch (statType.ToLower())
+        {
+            case "damage":
+                level = DamageLevel;
+                limit = maxDamageLevel;
+                break;
+            case "acrobatics":
+                level = AcrobaticsLevel;
+                limit = maxAcrobaticsLevel;
+                break;
+            case "firerate":
+                level = FireRateLevel;
+                limit = maxFireRateLevel;
+                break;
+        }
+
+        return level >= limit;
+    }
 
     #region Incrementor Setter Methods
 
