@@ -19,11 +19,18 @@ public class EnemySpawner : MonoBehaviour
 
     private GameInfo gameInfo;
     private GameUI gameUI;
-    private const float scaleDifficultyTime = 15;
+
+    private const float scaleDifficultyTime = 12.5f;
+    private const int maxDifficultyLevel = 15;
 
     public int GetIntensity()
     {
         return intensity;
+    }
+
+    public int GetMaxDifficultyLevel()
+    {
+        return maxDifficultyLevel;
     }
 
     public void StopSpawner()
@@ -60,12 +67,12 @@ public class EnemySpawner : MonoBehaviour
 
     private void SetSpawnerIntensity()
     {
-        intensity = Mathf.Clamp(gameInfo.Deaths + ScaleLevel, 1, 10);
-        var baseMaxSpawnTime = 8;
-        var baseMinSpawnTime = 4;
+        intensity = Mathf.Clamp(gameInfo.Deaths + ScaleLevel, 1, maxDifficultyLevel);
+        var baseMaxSpawnTime = 6;
+        var baseMinSpawnTime = 2;
 
-        spawnTimeMin = Mathf.Clamp(Mathf.Round(baseMinSpawnTime - (0.25f * intensity)), 0.5f, 30);
-        spawnTimeMax = Mathf.Clamp(Mathf.Round(baseMaxSpawnTime - (0.5f * intensity)), 1.5f, 30);
+        spawnTimeMin = Mathf.Clamp(Mathf.Round(baseMinSpawnTime - (0.15f * intensity)), 0.25f, 30);
+        spawnTimeMax = Mathf.Clamp(Mathf.Round(baseMaxSpawnTime - (0.25f * intensity)), 1.5f, 30);
 
         gameUI.SetDifficultyText();
     }
