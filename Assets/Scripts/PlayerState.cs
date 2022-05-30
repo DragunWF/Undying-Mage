@@ -18,6 +18,7 @@ public class PlayerState : MonoBehaviour
 
     private FlashEffect flashEffect;
     private AudioPlayer audioPlayer;
+    private ParticlesPlayer particlesPlayer;
 
     private GameUI gameUI;
     private GameInfo gameInfo;
@@ -29,6 +30,7 @@ public class PlayerState : MonoBehaviour
 
         flashEffect = GetComponent<FlashEffect>();
         audioPlayer = FindObjectOfType<AudioPlayer>();
+        particlesPlayer = FindObjectOfType<ParticlesPlayer>();
 
         gameUI = FindObjectOfType<GameUI>();
         gameInfo = FindObjectOfType<GameInfo>();
@@ -62,9 +64,18 @@ public class PlayerState : MonoBehaviour
 
     private void Death()
     {
+        particlesPlayer.PlayDeathEffect(transform.position);
+        FindObjectOfType<EnemySpawner>().StopSpawner();
+
         gameInfo.IncrementDeaths();
         gameUI.SetDeathText();
-        gameManager.LoadUpgradeMenu();
+
+        var enemies = FindObjectsOfType<Enemy>();
+        foreach (var enemy in enemies)
+            enemy.OnPlayerDeath();
+
+        Destroy(gameObject);
+        // gameManager.LoadUpgradeMenu();
     }
 
     private IEnumerator TriggerDamageCooldown()
