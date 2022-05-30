@@ -27,8 +27,10 @@ public class UpgradeMenuUI : MonoBehaviour
             {
                 gameInfo.IncrementAcrobaticsLevel();
                 gameInfo.ExecuteUpgradeCost();
+
+                audioPlayer.PlayUpgrade();
                 SetTextUI();
-                CheckMaxLevel(type);
+                CheckAllMaxLevels();
             }
             else
                 audioPlayer.PlayError();
@@ -45,8 +47,10 @@ public class UpgradeMenuUI : MonoBehaviour
             {
                 gameInfo.IncrementFireRateLevel();
                 gameInfo.ExecuteUpgradeCost();
+
+                audioPlayer.PlayUpgrade();
                 SetTextUI();
-                CheckMaxLevel(type);
+                CheckAllMaxLevels();
             }
             else
                 audioPlayer.PlayError();
@@ -63,8 +67,10 @@ public class UpgradeMenuUI : MonoBehaviour
             {
                 gameInfo.IncrementDamageLevel();
                 gameInfo.ExecuteUpgradeCost();
+
+                audioPlayer.PlayUpgrade();
                 SetTextUI();
-                CheckMaxLevel(type);
+                CheckAllMaxLevels();
             }
             else
                 audioPlayer.PlayError();
@@ -90,10 +96,7 @@ public class UpgradeMenuUI : MonoBehaviour
         gameInfo.TransferScoreToPoints();
         warningText.gameObject.SetActive(false);
         SetTextUI();
-
-        var levelTypes = new string[3] { "damage", "acrobatics", "firerate " };
-        foreach (var type in levelTypes)
-            CheckMaxLevel(type);
+        CheckAllMaxLevels();
     }
 
     private void SetTextUI()
@@ -108,7 +111,7 @@ public class UpgradeMenuUI : MonoBehaviour
 
     private void SetMaxLevelTextUI(string type)
     {
-        switch (type.ToLower())
+        switch (type.ToLower().Trim())
         {
             case "damage":
                 damageLevel.text = string.Format("Damage:Max");
@@ -122,6 +125,13 @@ public class UpgradeMenuUI : MonoBehaviour
         }
     }
 
+    private void CheckAllMaxLevels()
+    {
+        var levelTypes = new string[3] { "damage", "acrobatics", "firerate" };
+        foreach (var type in levelTypes)
+            CheckMaxLevel(type);
+    }
+
     private void CheckMaxLevel(string type)
     {
         if (gameInfo.CheckLevelLimit(type))
@@ -131,10 +141,7 @@ public class UpgradeMenuUI : MonoBehaviour
     private bool HasEnoughPoints()
     {
         if (gameInfo.Points >= 100)
-        {
-            audioPlayer.PlayUpgrade();
             return true;
-        }
 
         audioPlayer.PlayError();
         warningText.gameObject.SetActive(true);
