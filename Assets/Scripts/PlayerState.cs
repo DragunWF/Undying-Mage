@@ -66,6 +66,7 @@ public class PlayerState : MonoBehaviour
     {
         particlesPlayer.PlayDeathEffect(transform.position);
         FindObjectOfType<EnemySpawner>().StopSpawner();
+        FindObjectOfType<FadeToBlack>().InitializeFade();
 
         gameInfo.IncrementDeaths();
         gameUI.SetDeathText();
