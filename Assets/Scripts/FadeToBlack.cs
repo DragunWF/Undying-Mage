@@ -10,7 +10,7 @@ public class FadeToBlack : MonoBehaviour
     private Image blackScreen;
 
     private float alphaSlider = 0;
-    private const float fadeSpeed = 150.5f;
+    private const float fadeSpeed = 145.5f;
     private float loadSceneDelay = Mathf.Ceil(255 / fadeSpeed) + 1.5f;
 
     public void InitializeFade()

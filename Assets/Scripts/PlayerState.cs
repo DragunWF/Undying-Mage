@@ -24,27 +24,6 @@ public class PlayerState : MonoBehaviour
     private GameInfo gameInfo;
     private GameManager gameManager;
 
-    private void Awake()
-    {
-        Health = 100;
-
-        flashEffect = GetComponent<FlashEffect>();
-        audioPlayer = FindObjectOfType<AudioPlayer>();
-        particlesPlayer = FindObjectOfType<ParticlesPlayer>();
-
-        gameUI = FindObjectOfType<GameUI>();
-        gameInfo = FindObjectOfType<GameInfo>();
-        gameManager = FindObjectOfType<GameManager>();
-
-        MoveSpeed = 5.5f;
-        JumpForce = 11.5f;
-
-        FireballDamage = 25;
-        FiringRate = 1.2f;
-
-        DamageCooldown = 1.5f;
-    }
-
     public void DamageHealth(int damageAmount)
     {
         if (!isInvincibilityOn)
@@ -62,6 +41,27 @@ public class PlayerState : MonoBehaviour
         }
     }
 
+    private void Awake()
+    {
+        Health = 100;
+
+        flashEffect = GetComponent<FlashEffect>();
+        audioPlayer = FindObjectOfType<AudioPlayer>();
+        particlesPlayer = FindObjectOfType<ParticlesPlayer>();
+
+        gameUI = FindObjectOfType<GameUI>();
+        gameInfo = FindObjectOfType<GameInfo>();
+        gameManager = FindObjectOfType<GameManager>();
+
+        MoveSpeed = 5.5f;
+        JumpForce = 11.5f;
+
+        FireballDamage = 25;
+        FiringRate = 1.5f;
+
+        DamageCooldown = 1.5f;
+    }
+
     private void Death()
     {
         particlesPlayer.PlayDeathEffect(transform.position);
@@ -76,7 +76,6 @@ public class PlayerState : MonoBehaviour
             enemy.OnPlayerDeath();
 
         Destroy(gameObject);
-        // gameManager.LoadUpgradeMenu();
     }
 
     private IEnumerator TriggerDamageCooldown()
