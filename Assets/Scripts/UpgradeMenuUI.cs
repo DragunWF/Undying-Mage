@@ -19,31 +19,55 @@ public class UpgradeMenuUI : MonoBehaviour
 
     public void UpgradeAcrobatics()
     {
+        var type = "acrobatics";
+
         if (HasEnoughPoints())
         {
-            gameInfo.IncrementAcrobaticsLevel();
-            gameInfo.ExecuteUpgradeCost();
-            SetTextUI();
+            if (!gameInfo.CheckLevelLimit(type))
+            {
+                gameInfo.IncrementAcrobaticsLevel();
+                gameInfo.ExecuteUpgradeCost();
+                SetTextUI();
+                CheckMaxLevel(type);
+            }
+            else
+                audioPlayer.PlayError();
         }
     }
 
     public void UpgradeFireRate()
     {
+        var type = "firerate";
+
         if (HasEnoughPoints())
         {
-            gameInfo.IncrementFireRateLevel();
-            gameInfo.ExecuteUpgradeCost();
-            SetTextUI();
+            if (!gameInfo.CheckLevelLimit(type))
+            {
+                gameInfo.IncrementFireRateLevel();
+                gameInfo.ExecuteUpgradeCost();
+                SetTextUI();
+                CheckMaxLevel(type);
+            }
+            else
+                audioPlayer.PlayError();
         }
     }
 
     public void UpgradeDamage()
     {
+        var type = "damage";
+
         if (HasEnoughPoints())
         {
-            gameInfo.IncrementDamageLevel();
-            gameInfo.ExecuteUpgradeCost();
-            SetTextUI();
+            if (!gameInfo.CheckLevelLimit(type))
+            {
+                gameInfo.IncrementDamageLevel();
+                gameInfo.ExecuteUpgradeCost();
+                SetTextUI();
+                CheckMaxLevel(type);
+            }
+            else
+                audioPlayer.PlayError();
         }
     }
 
@@ -76,6 +100,28 @@ public class UpgradeMenuUI : MonoBehaviour
 
         pointsText.text = string.Format("Points:{0}", gameInfo.Points);
         deathsText.text = string.Format("Deaths:{0}", gameInfo.Deaths);
+    }
+
+    private void SetMaxLevelTextUI(string type)
+    {
+        switch (type.ToLower())
+        {
+            case "damage":
+                damageLevel.text = string.Format("Damage:Max");
+                break;
+            case "acrobatics":
+                acrobaticsLevel.text = string.Format("Acrobatics:Max");
+                break;
+            case "firerate":
+                fireRateLevel.text = string.Format("Firerate:Max");
+                break;
+        }
+    }
+
+    private void CheckMaxLevel(string type)
+    {
+        if (gameInfo.CheckLevelLimit(type))
+            SetMaxLevelTextUI(type);
     }
 
     private bool HasEnoughPoints()
