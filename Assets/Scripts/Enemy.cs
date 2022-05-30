@@ -22,6 +22,7 @@ public class Enemy : MonoBehaviour
     private PlayerMovement playerMovement;
     private EnemySpawner enemySpawner;
 
+    private AudioPlayer audioPlayer;
     private FlashEffect flashEffect;
     private int playerDamage;
 
@@ -38,6 +39,7 @@ public class Enemy : MonoBehaviour
 
     public void DamageHealth()
     {
+        audioPlayer.PlayDamage();
         health -= playerDamage;
         flashEffect.Flash();
 
@@ -56,6 +58,7 @@ public class Enemy : MonoBehaviour
 
     private void Awake()
     {
+        audioPlayer = FindObjectOfType<AudioPlayer>();
         enemySpawner = FindObjectOfType<EnemySpawner>();
         flashEffect = GetComponent<FlashEffect>();
         DamageCooldown = 0.25f;

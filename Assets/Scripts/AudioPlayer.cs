@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class AudioPlayer : MonoBehaviour
 {
-    private AudioClip playerDamaged;
-    private const float playerDamagedVolume = 0.3f;
+    private AudioClip damage;
+    private const float damageVolume = 0.75f;
 
     private AudioClip jump;
     private const float jumpVolume = 0.45f;
@@ -24,9 +24,9 @@ public class AudioPlayer : MonoBehaviour
 
     #region Audio Play Methods
 
-    public void PlayPlayerDamaged()
+    public void PlayDamage()
     {
-        PlayClip(playerDamaged, playerDamagedVolume);
+        PlayClip(damage, damageVolume);
     }
 
     public void PlayJump()
@@ -58,7 +58,7 @@ public class AudioPlayer : MonoBehaviour
 
     private void Awake()
     {
-        playerDamaged = Resources.Load("Audio/Damage") as AudioClip;
+        damage = Resources.Load("Audio/Damage") as AudioClip;
         jump = Resources.Load("Audio/Jump") as AudioClip;
         shoot = Resources.Load("Audio/Shoot") as AudioClip;
         buttonClick = Resources.Load("Audio/Click") as AudioClip;
