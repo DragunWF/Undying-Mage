@@ -10,8 +10,14 @@ public class EnemySpawner : MonoBehaviour
     private Vector2 rightPos;
     private Vector2 leftPos;
 
+    private Coroutine spawning;
     private float spawnIntervalMin = 0.5f;
     private float spawnIntervalMax = 1.5f;
+
+    public void StopSpawner()
+    {
+        StopCoroutine(spawning);
+    }
 
     private void Awake()
     {
@@ -32,7 +38,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(SpawnEnemies());
+        spawning = StartCoroutine(SpawnEnemies());
     }
 
     private float GetSpawnInterval()
