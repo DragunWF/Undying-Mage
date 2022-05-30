@@ -24,7 +24,7 @@ public class GameInfo : MonoBehaviour
         int limit = 0;
         int level = 0;
 
-        switch (statType.ToLower())
+        switch (statType.ToLower().Trim())
         {
             case "damage":
                 level = DamageLevel;
