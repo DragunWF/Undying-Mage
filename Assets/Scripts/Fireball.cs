@@ -8,14 +8,19 @@ public class Fireball : MonoBehaviour
     private const float fireballLifespan = 7.5f;
     private float moveSpeed;
 
+    private ParticlesPlayer particlesPlayer;
     private PlayerMovement player;
     private Rigidbody2D rigidBody;
 
-    private void Start()
+    private void Awake()
     {
         rigidBody = GetComponent<Rigidbody2D>();
         player = FindObjectOfType<PlayerMovement>();
+        particlesPlayer = FindObjectOfType<ParticlesPlayer>();
+    }
 
+    private void Start()
+    {
         if (player.IsFacingRight)
         {
             moveSpeed = baseSpeed;
@@ -39,6 +44,7 @@ public class Fireball : MonoBehaviour
     {
         if (other.tag == "Enemy")
         {
+            particlesPlayer.PlayHitEffect(transform.position);
             other.GetComponentInParent<Enemy>().DamageHealth();
             Destroy(gameObject);
         }
