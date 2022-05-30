@@ -7,9 +7,11 @@ using TMPro;
 public class GameUI : MonoBehaviour
 {
     private GameInfo gameInfo;
+    private EnemySpawner enemySpawner;
 
     private TextMeshProUGUI scoreText;
     private TextMeshProUGUI deathText;
+    private TextMeshProUGUI difficultyText;
 
     private Slider healthBar;
     private PlayerState playerState;
@@ -22,6 +24,12 @@ public class GameUI : MonoBehaviour
     public void SetDeathText()
     {
         deathText.text = string.Format("Deaths:{0}", gameInfo.Deaths);
+    }
+
+    public void SetDifficultyText()
+    {
+        difficultyText.text = string.Format("Difficulty:{0}",
+                                            enemySpawner.GetIntensity());
     }
 
     public void UpdateHealthBar()
@@ -38,9 +46,12 @@ public class GameUI : MonoBehaviour
                     .GetComponent<TextMeshProUGUI>();
         deathText = GameObject.Find("Deaths Text")
                     .GetComponent<TextMeshProUGUI>();
+        difficultyText = GameObject.Find("Difficulty Text")
+                         .GetComponent<TextMeshProUGUI>();
 
         healthBar = GameObject.Find("HealthBarSlider").GetComponent<Slider>();
         playerState = FindObjectOfType<PlayerState>();
+        enemySpawner = FindObjectOfType<EnemySpawner>();
     }
 
     private void Start()
@@ -52,5 +63,6 @@ public class GameUI : MonoBehaviour
 
         SetScoreText();
         SetDeathText();
+        SetDifficultyText();
     }
 }
