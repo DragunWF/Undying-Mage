@@ -17,25 +17,6 @@ public class GameInfo : MonoBehaviour
     static private GameInfo instance;
     private GameUI gameUI;
 
-    #region Multiplier Getter Methods
-
-    public float DamageMultiplier
-    {
-        get { return GetMultipler("damage"); }
-    }
-
-    public float FireRateMultiplier
-    {
-        get { return GetMultipler("firerate"); }
-    }
-
-    public float AcrobaticsMultiplier
-    {
-        get { return GetMultipler("acrobatics"); }
-    }
-
-    #endregion
-
     #region Incrementor Setter Methods
 
     public void IncrementDamageLevel()
@@ -114,27 +95,5 @@ public class GameInfo : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
-    }
-
-    private float GetMultipler(string type)
-    {
-        int baseLevel;
-
-        switch (type.ToLower())
-        {
-            case "damage":
-                baseLevel = DamageLevel;
-                break;
-            case "firerate":
-                baseLevel = FireRateLevel;
-                break;
-            case "acrobatics":
-                baseLevel = AcrobaticsLevel;
-                break;
-            default:
-                throw new System.Exception("Unknown Stat Type Entered");
-        }
-
-        return baseLevel * statIncreasePercentage;
     }
 }
