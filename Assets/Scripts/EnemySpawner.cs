@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    public int ScaleLevel { get; private set; }
+    private int intensity = 1;
+
     private GameObject[] enemies;
     private GameObject[] flyingEnemies;
 
@@ -11,8 +14,17 @@ public class EnemySpawner : MonoBehaviour
     private Vector2 leftPos;
 
     private Coroutine spawning;
-    private float spawnIntervalMin = 0.5f;
-    private float spawnIntervalMax = 1.5f;
+    private float spawnTimeMin;
+    private float spawnTimeMax;
+
+    private GameInfo gameInfo;
+    private GameUI gameUI;
+    private const float scaleDifficultyTime = 15;
+
+    public int GetIntensity()
+    {
+        return intensity;
+    }
 
     public void StopSpawner()
     {
@@ -34,16 +46,41 @@ public class EnemySpawner : MonoBehaviour
 
         rightPos = GameObject.Find("RightPosition").transform.position;
         leftPos = GameObject.Find("LeftPosition").transform.position;
+
+        gameInfo = FindObjectOfType<GameInfo>();
+        gameUI = FindObjectOfType<GameUI>();
     }
 
     private void Start()
     {
+        SetSpawnerIntensity();
+        Invoke("ScaleIntensity", scaleDifficultyTime);
         spawning = StartCoroutine(SpawnEnemies());
+    }
+
+    private void SetSpawnerIntensity()
+    {
+        intensity = Mathf.Clamp(gameInfo.Deaths + ScaleLevel, 1, 10);
+        var baseMaxSpawnTime = 8;
+        var baseMinSpawnTime = 4;
+
+        spawnTimeMin = Mathf.Clamp(Mathf.Round(baseMinSpawnTime - (0.25f * intensity)), 0.5f, 30);
+        spawnTimeMax = Mathf.Clamp(Mathf.Round(baseMaxSpawnTime - (0.5f * intensity)), 1.5f, 30);
+
+        gameUI.SetDifficultyText();
+    }
+
+    private void ScaleIntensity()
+    {
+        ScaleLevel++;
+        SetSpawnerIntensity();
+        if (ScaleLevel < 10)
+            Invoke("ScaleIntensity", scaleDifficultyTime);
     }
 
     private float GetSpawnInterval()
     {
-        return Random.Range(spawnIntervalMin, spawnIntervalMax);
+        return Random.Range(spawnTimeMin, spawnTimeMax);
     }
 
     private Vector2 GetRandomPosition()
@@ -69,7 +106,6 @@ public class EnemySpawner : MonoBehaviour
             Instantiate(ChooseRandomEnemy(),
                         GetRandomPosition(),
                         Quaternion.identity);
-
             yield return new WaitForSecondsRealtime(GetSpawnInterval());
         }
     }
