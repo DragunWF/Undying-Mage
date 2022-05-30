@@ -12,8 +12,7 @@ public class GameInfo : MonoBehaviour
     public int FireRateLevel { get; private set; }
     public int AcrobaticsLevel { get; private set; }
 
-    private float statIncreasePercentage = 0.25f;
-    private float enemySpawnTimePercentage = 1;
+    private const float statIncreasePercentage = 0.25f;
 
     static private GameInfo instance;
     private GameUI gameUI;
