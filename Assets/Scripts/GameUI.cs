@@ -28,8 +28,10 @@ public class GameUI : MonoBehaviour
 
     public void SetDifficultyText()
     {
-        difficultyText.text = string.Format("Difficulty:{0}",
-                                            enemySpawner.GetIntensity());
+        var level = enemySpawner.GetIntensity();
+        var displayedLevel = level >= enemySpawner.GetMaxDifficultyLevel() ?
+                            "Max" : level.ToString();
+        difficultyText.text = string.Format("Difficulty:{0}", displayedLevel);
     }
 
     public void UpdateHealthBar()
