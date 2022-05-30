@@ -8,10 +8,10 @@ public class AudioPlayer : MonoBehaviour
     private const float playerDamagedVolume = 0.3f;
 
     private AudioClip jump;
-    private const float jumpVolume = 0.4f;
+    private const float jumpVolume = 0.45f;
 
     private AudioClip shoot;
-    private const float shootVolume = 0.5f;
+    private const float shootVolume = 0.65f;
 
     private AudioClip buttonClick;
     private const float buttonClickVolume = 1.25f;
