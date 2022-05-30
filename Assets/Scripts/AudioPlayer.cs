@@ -52,7 +52,7 @@ public class AudioPlayer : MonoBehaviour
     {
         if (clip != null)
         {
-            Vector3 cameraPos = Camera.main.transform.position;
+            Vector2 cameraPos = Camera.main.transform.position;
             AudioSource.PlayClipAtPoint(clip, cameraPos, volume);
         }
     }
