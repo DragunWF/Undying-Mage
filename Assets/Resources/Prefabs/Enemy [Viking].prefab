@@ -110,9 +110,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 50
   damage: 15
-  moveSpeed: 1.1
-  minScoreGain: 10
-  maxScoreGain: 50
+  moveSpeed: 1.2
+  minScoreGain: 15
+  maxScoreGain: 55
   isFlyingEnemy: 0
 --- !u!114 &5918284815198245099
 MonoBehaviour:

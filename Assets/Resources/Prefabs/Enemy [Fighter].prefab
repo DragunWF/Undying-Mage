@@ -108,11 +108,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fca4ea2bec308d498cdcd0990c73663, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 50
+  health: 35
   damage: 15
-  moveSpeed: 1.1
+  moveSpeed: 1.4
   minScoreGain: 10
-  maxScoreGain: 50
+  maxScoreGain: 45
   isFlyingEnemy: 0
 --- !u!114 &3654039732936266947
 MonoBehaviour:

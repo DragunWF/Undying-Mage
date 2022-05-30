@@ -13,11 +13,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3991109808023349481, guid: a1f60e7d77376034bb9fb5887a00ddc9, type: 3}
       propertyPath: health
-      value: 20
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3991109808023349481, guid: a1f60e7d77376034bb9fb5887a00ddc9, type: 3}
       propertyPath: moveSpeed
       value: 6.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3991109808023349481, guid: a1f60e7d77376034bb9fb5887a00ddc9, type: 3}
+      propertyPath: maxScoreGain
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 3991109808023349481, guid: a1f60e7d77376034bb9fb5887a00ddc9, type: 3}
+      propertyPath: minScoreGain
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7459505729518823500, guid: a1f60e7d77376034bb9fb5887a00ddc9, type: 3}
       propertyPath: m_Sprite
