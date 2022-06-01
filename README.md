@@ -22,3 +22,12 @@ A game for the 2022 GameDev.tv game jam in itch.io.
 
 - [Main Menu Music](https://opengameart.org/content/emotional-mood-piece)
 - [Game Music](https://opengameart.org/content/a-journey-awaits)
+
+## Note
+
+As for now, I won't be releasing a new update for my game until the game jam ends because one of the jam
+rule states that I'm now allowed to make gameplay changes while the rating phase of the jam is still
+going on. I'll be updating the game here but won't be releasing it to itch.io until the jam ends.
+
+All sound effects that I've chosen have a public domain license, CC0. The only ones that are not are the
+ones I've properly attributed above.
