@@ -14,6 +14,7 @@ public class GameUI : MonoBehaviour
     private TextMeshProUGUI difficultyText;
 
     private Slider healthBar;
+    private Slider fireballBar;
     private PlayerState playerState;
 
     public void SetScoreText()
@@ -40,6 +41,11 @@ public class GameUI : MonoBehaviour
         healthBar.value = barValue;
     }
 
+    public void UpdateFireballBar(bool onCooldown)
+    {
+        fireballBar.value = onCooldown ? 0 : 1;
+    }
+
     private void Awake()
     {
         gameInfo = FindObjectOfType<GameInfo>();
@@ -52,6 +58,7 @@ public class GameUI : MonoBehaviour
                          .GetComponent<TextMeshProUGUI>();
 
         healthBar = GameObject.Find("HealthBarSlider").GetComponent<Slider>();
+        fireballBar = GameObject.Find("FireballBarSlider").GetComponent<Slider>();
         playerState = FindObjectOfType<PlayerState>();
         enemySpawner = FindObjectOfType<EnemySpawner>();
     }

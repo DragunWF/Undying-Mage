@@ -8,12 +8,14 @@ public class PlayerShooting : MonoBehaviour
     private GameObject fireball;
     private Transform fireballSpawnPos;
 
+    private GameUI gameUI;
     private PlayerState playerState;
     private bool canCast = true;
 
     private void Awake()
     {
         audioPlayer = FindObjectOfType<AudioPlayer>();
+        gameUI = FindObjectOfType<GameUI>();
         playerState = GetComponent<PlayerState>();
         fireball = Resources.Load("Prefabs/Fireball") as GameObject;
         fireballSpawnPos = GameObject.Find("ProjectileSpawn").transform;
@@ -25,6 +27,7 @@ public class PlayerShooting : MonoBehaviour
         {
             audioPlayer.PlayShoot();
             canCast = false;
+            gameUI.UpdateFireballBar(true);
             Instantiate(fireball, fireballSpawnPos.position, transform.rotation);
             StartCoroutine(CastingCooldown());
         }
@@ -34,5 +37,6 @@ public class PlayerShooting : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(playerState.FiringRate);
         canCast = true;
+        gameUI.UpdateFireballBar(false);
     }
 }
