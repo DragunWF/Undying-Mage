@@ -21,7 +21,7 @@ public class EnemySpawner : MonoBehaviour
     private GameUI gameUI;
 
     private const float scaleDifficultyTime = 12.5f;
-    private const int maxDifficultyLevel = 15;
+    private const int maxDifficultyLevel = 20;
 
     public int GetIntensity()
     {
@@ -71,8 +71,8 @@ public class EnemySpawner : MonoBehaviour
         var baseMaxSpawnTime = 6;
         var baseMinSpawnTime = 2;
 
-        spawnTimeMin = Mathf.Clamp(Mathf.Round(baseMinSpawnTime - (0.15f * intensity)), 0.25f, 30);
-        spawnTimeMax = Mathf.Clamp(Mathf.Round(baseMaxSpawnTime - (0.25f * intensity)), 1.5f, 30);
+        spawnTimeMin = Mathf.Clamp(Mathf.Round(baseMinSpawnTime - (0.15f * intensity)), 0.1f, 30);
+        spawnTimeMax = Mathf.Clamp(Mathf.Round(baseMaxSpawnTime - (0.25f * intensity)), 0.3f, 30);
 
         gameUI.SetDifficultyText();
     }
@@ -81,13 +81,22 @@ public class EnemySpawner : MonoBehaviour
     {
         ScaleLevel++;
         SetSpawnerIntensity();
-        if (ScaleLevel < 10)
+        if (ScaleLevel < maxDifficultyLevel)
             Invoke("ScaleIntensity", scaleDifficultyTime);
     }
 
     private float GetSpawnInterval()
     {
-        return Random.Range(spawnTimeMin, spawnTimeMax);
+        var spawnTimes = new List<float>();
+        var currentInterval = spawnTimeMin;
+
+        while (currentInterval < spawnTimeMax)
+        {
+            spawnTimes.Add(currentInterval);
+            currentInterval += 0.1f;
+        };
+
+        return spawnTimes[Random.Range(0, spawnTimes.Count)];
     }
 
     private Vector2 GetRandomPosition()
@@ -101,7 +110,7 @@ public class EnemySpawner : MonoBehaviour
         GameObject[] chosenGroup;
 
         var chance = Random.Range(1, 7);
-        chosenGroup = chance >= 3 ? enemies : flyingEnemies;
+        chosenGroup = chance >= 2 ? enemies : flyingEnemies;
 
         return chosenGroup[Random.Range(0, chosenGroup.Length)];
     }
