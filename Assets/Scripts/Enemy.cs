@@ -93,9 +93,22 @@ public class Enemy : MonoBehaviour
     private void SetStats()
     {
         var intensity = enemySpawner.GetIntensity();
-        health += health * (intensity * 0.2f);
-        damage += damage * (intensity * 0.15f);
-        moveSpeed += intensity * 0.1f;
+
+        damage += damage * (intensity * 0.1f);
+        health += health * (intensity * 0.5f);
+
+        const int maxDamage = 50;
+        if (damage > maxDamage)
+            damage = maxDamage;
+
+        if (!isFlyingEnemy)
+        {
+            moveSpeed += intensity * 0.1f;
+
+            const int maxSpeed = 10;
+            if (moveSpeed > maxSpeed)
+                moveSpeed = maxSpeed;
+        }
     }
 
     private void Move()
