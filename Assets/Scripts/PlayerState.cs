@@ -65,10 +65,10 @@ public class PlayerState : MonoBehaviour
     private void Start()
     {
         MoveSpeed += gameInfo.AcrobaticsLevel * 1;
-        JumpForce += gameInfo.AcrobaticsLevel * 1.85f;
+        JumpForce += gameInfo.AcrobaticsLevel * 0.75f;
 
-        FireballDamage += gameInfo.DamageLevel * 15;
-        FiringRate -= gameInfo.FireRateLevel * 0.35f;
+        FireballDamage += gameInfo.DamageLevel * 10;
+        FiringRate -= gameInfo.FireRateLevel * 0.25f;
     }
 
     private void Death()
