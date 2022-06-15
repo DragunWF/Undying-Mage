@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerShooting : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class PlayerShooting : MonoBehaviour
     private GameUI gameUI;
     private PlayerState playerState;
     private bool canCast = true;
+    private bool isHoldingDownFire = false;
 
     private void Awake()
     {
@@ -21,9 +23,9 @@ public class PlayerShooting : MonoBehaviour
         fireballSpawnPos = GameObject.Find("ProjectileSpawn").transform;
     }
 
-    private void OnFire()
+    private void Update()
     {
-        if (canCast)
+        if (canCast && isHoldingDownFire)
         {
             audioPlayer.PlayShoot();
             canCast = false;
@@ -31,6 +33,11 @@ public class PlayerShooting : MonoBehaviour
             Instantiate(fireball, fireballSpawnPos.position, transform.rotation);
             StartCoroutine(CastingCooldown());
         }
+    }
+
+    private void OnFire(InputValue value)
+    {
+        isHoldingDownFire = value.Get<float>() > 0;
     }
 
     private IEnumerator CastingCooldown()
