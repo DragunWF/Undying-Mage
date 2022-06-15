@@ -68,8 +68,8 @@ public class EnemySpawner : MonoBehaviour
     private void SetSpawnerIntensity()
     {
         intensity = Mathf.Clamp(gameInfo.Deaths + ScaleLevel, 1, maxDifficultyLevel);
-        var baseMaxSpawnTime = 6;
-        var baseMinSpawnTime = 2;
+        var baseMaxSpawnTime = 7;
+        var baseMinSpawnTime = 3;
 
         spawnTimeMin = Mathf.Clamp(Mathf.Round(baseMinSpawnTime - (0.15f * intensity)), 0.1f, 30);
         spawnTimeMax = Mathf.Clamp(Mathf.Round(baseMaxSpawnTime - (0.25f * intensity)), 0.3f, 30);
