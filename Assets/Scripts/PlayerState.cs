@@ -68,7 +68,7 @@ public class PlayerState : MonoBehaviour
         JumpForce += gameInfo.AcrobaticsLevel * 0.75f;
 
         FireballDamage += gameInfo.DamageLevel * 10;
-        FiringRate -= gameInfo.FireRateLevel * 0.25f;
+        FiringRate = FiringRate - gameInfo.FireRateLevel * 0.125f;
     }
 
     private void Death()
