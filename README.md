@@ -28,6 +28,8 @@ A game for the 2022 GameDev.tv game jam in itch.io.
 All sound effects that I've chosen have a public domain license, CC0. The only ones that are not are the
 ones I've properly attributed above.
 
+# Update Notes
+
 ## Update Notes for v1.1
 
 - Balanced out difficulty scaling by making it harder.
@@ -36,3 +38,9 @@ ones I've properly attributed above.
 - Added a cooldown bar for indicating when you can cast fireballs.
 - You can now just hold left click to cast fireballs.
 - Fixed bug where difficulty level gets stuck at 12.
+
+## Update Notes for v1.2
+
+- Added new platform support for Mac and Linux!
+- Difficulty scaling speed is now affected by the number of upgrades you have instead of deaths.
+- Slightly nerfed enemy health scaling.
