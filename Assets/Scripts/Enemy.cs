@@ -95,7 +95,7 @@ public class Enemy : MonoBehaviour
         var intensity = enemySpawner.GetIntensity();
 
         damage += damage * (intensity * 0.1f);
-        health += health * (intensity * 0.5f);
+        health += health * (intensity * 0.4f);
 
         const int maxDamage = 50;
         if (damage > maxDamage)
