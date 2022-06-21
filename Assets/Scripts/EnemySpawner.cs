@@ -17,8 +17,8 @@ public class EnemySpawner : MonoBehaviour
     private float spawnTimeMin;
     private float spawnTimeMax;
 
-    private GameInfo gameInfo;
     private GameUI gameUI;
+    private GameInfo gameInfo;
 
     private const float scaleDifficultyTime = 12.5f;
     private const int maxDifficultyLevel = 20;
@@ -54,8 +54,8 @@ public class EnemySpawner : MonoBehaviour
         rightPos = GameObject.Find("RightPosition").transform.position;
         leftPos = GameObject.Find("LeftPosition").transform.position;
 
-        gameInfo = FindObjectOfType<GameInfo>();
         gameUI = FindObjectOfType<GameUI>();
+        gameInfo = FindObjectOfType<GameInfo>();
     }
 
     private void Start()
@@ -67,7 +67,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void SetSpawnerIntensity()
     {
-        intensity = Mathf.Clamp(gameInfo.Deaths + ScaleLevel, 1, maxDifficultyLevel);
+        intensity = Mathf.Clamp(ScaleLevel, 1, maxDifficultyLevel);
         var baseMaxSpawnTime = 7;
         var baseMinSpawnTime = 3;
 
@@ -82,7 +82,7 @@ public class EnemySpawner : MonoBehaviour
         ScaleLevel++;
         SetSpawnerIntensity();
         if (ScaleLevel < maxDifficultyLevel)
-            Invoke("ScaleIntensity", scaleDifficultyTime);
+            Invoke("ScaleIntensity", CalculateDifficultyTime());
     }
 
     private float GetSpawnInterval()
@@ -97,6 +97,16 @@ public class EnemySpawner : MonoBehaviour
         };
 
         return spawnTimes[Random.Range(0, spawnTimes.Count)];
+    }
+
+    private float CalculateDifficultyTime()
+    {
+        float time = scaleDifficultyTime;
+        float modifiers = 0;
+        modifiers += Mathf.Floor((gameInfo.AcrobaticsLevel + 1) / 2);
+        modifiers += Mathf.Floor((gameInfo.DamageLevel + 1) / 5);
+        modifiers += Mathf.Floor((gameInfo.FireRateLevel + 1) / 5);
+        return time - modifiers;
     }
 
     private Vector2 GetRandomPosition()
