@@ -11,6 +11,11 @@ menu where you can power up your stats and every death just makes you more power
 
 A game for the 2022 GameDev.tv game jam in itch.io.
 
+## Note
+
+All sound effects that I've chosen have a public domain license, CC0. The only ones that are not are the
+ones I've properly attributed below.
+
 ## Links
 
 - [My Website](https://dragunwf.herokuapp.com)
@@ -23,14 +28,11 @@ A game for the 2022 GameDev.tv game jam in itch.io.
 - [Main Menu Music](https://opengameart.org/content/emotional-mood-piece)
 - [Game Music](https://opengameart.org/content/a-journey-awaits)
 
-## Note
-
-All sound effects that I've chosen have a public domain license, CC0. The only ones that are not are the
-ones I've properly attributed above.
+---
 
 # Update Notes
 
-## Update Notes for v1.1
+## v1.1
 
 - Balanced out difficulty scaling by making it harder.
 - Decreased movement speed for bees.
@@ -39,7 +41,7 @@ ones I've properly attributed above.
 - You can now just hold left click to cast fireballs.
 - Fixed bug where difficulty level gets stuck at 12.
 
-## Update Notes for v1.2
+## v1.2
 
 - Added new platform support for Mac and Linux!
 - Difficulty scaling speed is now affected by the number of upgrades you have instead of deaths.
