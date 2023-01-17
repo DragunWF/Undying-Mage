@@ -1,5 +1,9 @@
 # Undying Mage
 
+![GitHub top language](https://img.shields.io/github/languages/top/DragunWF/Undying-Mage)
+![Lines of code](https://img.shields.io/tokei/lines/github/DragunWF/Undying-Mage)
+![GitHub repo size](https://img.shields.io/github/repo-size/DragunWF/Undying-Mage)
+
 ## Description
 
 A mage that respawns over and over; getting stronger with each revive, thus making him the undying mage as the mage never really dies permanently, he always comes back for more.
